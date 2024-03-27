@@ -1,0 +1,396 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+
+html,
+body {
+    background-color: #E5DCCA;
+    font-family: 'Montserrat', sans-serif;
+    scroll-behavior: smooth;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+/* hero section */
+
+.con-main-hero {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+
+}
+
+
+.con-hero {
+    width: 100%;
+    height: 100%;
+}
+
+.con-hero img {
+    width: 100%;
+    height: 100%;
+}
+
+.clicked {
+    color: #FF6884;
+    /* Change the color to an orange shade */
+    transition: color 0.3s ease;
+    /* Add a smooth color transition */
+    cursor: pointer;
+    /* Change cursor on hover */
+}
+
+.hero-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 20%;
+    left: 35%;
+    color: #2F2E41;
+}
+
+.hero-copy h2 {
+    font-size: 4vw;
+    font-weight: 600;
+}
+
+.hero-copy h3 {
+    font-size: 2.4vw;
+    font-weight: 600;
+}
+
+.con-search-bar {
+    display: flex;
+    position: absolute;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 1px 2.5px 2.5px #2F2E41;
+    width: 34vw;
+    height: 4vw;
+    top: 70%;
+    left: 35%;
+    padding: .5vw 1.5vw;
+    background-color: #F6F6F6;
+    border-radius: 12px;
+}
+
+.con-search-bar form{
+    display: flex;
+    align-items: center;
+}
+
+.line {
+    height: 38px;
+    width: 1px;
+    background-color: #2F2E41;
+    margin: 0 18px;
+}
+
+.con-search-bar button {
+    background-color: #2F2E41;
+    border: none;
+    color: #F6F6F6;
+    margin: auto;
+    margin: .8vw 2.2vw;
+    font-size: 1.1vw;
+    font-weight: 500;
+    border-radius: 8px;
+    margin-right: -0.5vw;
+    padding: .8vw 1.9vw;
+    cursor: pointer;
+}
+
+.search-inp {
+    width: 100%;
+    height: auto;
+    margin-right: 1.1vw;
+}
+
+.search-inp input {
+    width: 100%;
+    height: auto;
+    border: none;
+    border-style: none;
+    outline: none;
+    font-size: 1.3vw;
+    background-color: #F6F6F6;
+
+}
+
+/* copy section */
+
+.con-copy {
+    display: flex;
+    height: 80vh;
+    width: 100%;
+    align-items: center;
+    overflow: hidden;
+    background-image: url("./static/assets/herosection-bg.svg");
+
+}
+
+.scroll {
+    white-space: nowrap;
+    margin: 0 2vw;
+}
+
+.scroll div {
+    display: flex;
+    gap: 1.2vw;
+}
+
+.scroll p {
+    font-size: 4vw;
+    font-weight: 600;
+    color: #F6F6F6;
+    line-height: 6vw;
+    margin-bottom: 0;
+}
+
+.scroll div span {
+    color: #FF6884;
+}
+
+.righttoleft {
+    animation: rtol 10s infinite linear;
+}
+
+@keyframes rtol {
+    from {
+        transform: translateX(0%);
+    }
+
+    to {
+        transform: translateX(-50%);
+
+    }
+}
+
+.lefttoright {
+    animation: ltor 10s infinite linear;
+}
+
+
+@keyframes ltor {
+    from {
+        transform: translateX(-50%);
+    }
+
+    to {
+        transform: translateX(0%);
+
+    }
+}
+
+/* what we do section */
+
+.con-main-do {
+    display: flex;
+    flex-direction: column;
+    /* height: 100vh; */
+    min-height: 100vh;
+    width: 100%;
+    background-color: #E5DCCA;
+}
+
+
+.con-doo {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    background-image: url("./static/assets/Polygon-1.svg");
+    justify-content: space-around;
+    align-items: center;
+    padding: 5vw .5vw;
+}
+
+.flip {
+    display: flex;
+    flex-direction: row-reverse;
+    background-image: url("./static/assets/Polygon-2.svg");
+}
+
+.copy {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.copy h2 {
+    font-size: 4vw;
+    color: #FF6884;
+    margin-bottom: 1.3vw;
+    font-weight: bold;
+}
+
+.copy p {
+    font-size: 2.6vw;
+    color: #2F2E41;
+    font-weight: 600;
+    margin-bottom: 1.8vw;
+}
+
+.copy span {
+    color: #FF6884;
+}
+
+.copy button {
+    padding: 1vw 1.8vw;
+    width: fit-content;
+    border: none;
+    font-size: 1.2vw;
+    background-color: #FF6884;
+    color: #F6F6F6;
+    cursor: pointer;
+}
+
+.copy button:hover {
+    color: #f2f2f2;
+    box-shadow: 7px 5px 5px #2F2E41;
+}
+
+.illu {
+    transition: transform 0.3s ease-in-out;
+    transform-origin: center center;
+}
+
+.illu.hovered {
+    transform: scale(1.2);
+}
+
+
+
+/* top city section */
+
+.con-city {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    padding: 2vw 1.3vw;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    background-color: #E5DCCA;
+}
+
+.grid {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.8vw;
+}
+
+.con-city h2 {
+    color: #FF6884;
+    text-align: center;
+    font-weight: 600;
+    font-size: 2.5vw;
+    margin: 3.3vw 0;
+}
+
+.card-city {
+    margin: 1vw;
+    position: relative;
+    text-align: center;
+    font-weight: 500;
+    color: #2F2E41;
+    font-size: 1.8vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.card-city{
+    transition: transform 0.3s ease-in-out;
+
+}
+
+.card-city:hover{
+    transform: scale(1.2);}
+
+.card-city img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Ensure the image covers the entire container */
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.card-city p {
+    z-index: 1;
+    color: #f2f2f2;
+    font-size: 1.8vw;
+    text-shadow: 1px 1px 2px #2F2E41;
+    text-align: center;
+    margin: 0;
+}
+
+.grid .card-city {
+    margin: 1vw 1.8vw;
+}
+
+.grid:nth-child(1) .card-city {
+    font-size: 3vw;
+}
+
+/* subscription section */
+
+.con-my-sub {
+    width: 100%;
+    height: 100%;
+    padding: 10vw 0;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    background-color: #E5DCCA;
+}
+
+.con-my-sub h2 {
+    font-size: 2.4vw;
+    font-weight: 600;
+    margin-bottom: 6vw;
+    color: #2F2E41;
+}
+
+.con-my-sub img {
+    width: 100%;
+    height: 25vw;
+    margin-bottom: 8vw;
+}
+
+.con-my-sub span {
+    color: #FF6884;
+}
+
+.con-my-sub button {
+    background-color: #FF6884;
+    color: #F6F6F6;
+    border: none;
+    width: fit-content;
+    height: fit-content;
+    padding: 1.2vw 3vw;
+    margin: 0 auto;
+    font-size: 1.2vw;
+    cursor: pointer;
+}
+
+.con-my-sub button:hover{
+    color: #f2f2f2;
+    box-shadow: 7px 5px 5px #2F2E41;
+}

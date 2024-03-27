@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'exclusive.css' %}">
+    <title>Exclusive</title>
+</head>
+
+<body>
+    <div class="main">
+        <div class="con-main-hero">
+            <div class="con-header">
+                <div class="logo" data-url="/home">
+                    <img src="{% static 'assets/logo.svg' %}" data-url="/home" alt="logo">
+                </div>
+                <div class="nav">
+                    {% comment %} <h4 class="nav-link" data-url="/home">Home</h4>
+                    <h4 class="nav-link" data-url="/buy">Buy</h4>
+                    <h4 class="nav-link" data-url="/list_plot">Sell</h4>
+                    <h4 class="nav-link"
+                        data-url="/rent">
+                        Rent</h4>
+                    <h4 class="nav-link" data-url="/about">About us</h4> {% endcomment %}
+                </div>
+                <div class="cta-btn">
+                    <div class="login-btn nav-link" data-url="{% url 'list_plot'%}">List Plot</div>
+                    <div class="profile nav-link-profile" data-url="{% url 'profile_page' %}">
+                        <img data-url="{% url 'profile_page' %}" class="nav-link-profile"
+                            src="{% static 'assets/icon/icon-profile.svg' %}" alt="">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="con">
+            <div class="img">
+                <img src="{% static 'assets/subscribe.svg' %}" alt="">
+            </div>
+
+            <div class="left">
+                <div class="sub">
+                    <h2>Exclusive Benefits Inside! Subscribe for Premium Plot Listings</h2>
+                    <p>Unlock the full potential of your plot listings! Subscribe to our premium membership and
+                        experience a significant boost in visibility. Your plots will be showcased at the top of search
+                        results, giving you an edge in the competitive real estate market. Don't miss out – subscribe
+                        now!</p>
+                    <div class="cta-btn" data-url="{% url 'payout_page' %}">
+                        Subscribe Now
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="con-footer">
+                <div class="con1">
+
+                    <div class="sub-con1">
+                        <img class="f-logo nav-link " data-url="/home" src="{% static 'assets/f-logo.svg' %}"
+                            data-url="/" alt="">
+                        <h2>Explore, Invest <br> and Build</h2>
+                    </div>
+
+
+                    <div class="social">
+                        <img class="nav-link" data-url="https://twitter.com/" src="{% static 'assets/icon/tt.svg' %}" alt=""
+                        data-url="/">
+                    <img class="nav-link" data-url="https://www.youtube.com/" src="{% static 'assets/icon/yt.svg' %}" alt=""
+                        data-url="/">
+                    <img class="nav-link" data-url="https://www.linkedin.com/" src="{% static 'assets/icon/linked.svg' %}" alt=""
+                        data-url="/list_plot">
+                    <img class="nav-link" data-url="https://www.instagram.com/" src="{% static 'assets/icon/insta.svg' %}" alt=""
+                        data-url="/list_plot">
+                    </div>
+                </div>
+                <div class="con2">
+                    <h2>Quick links</h2>
+                    <h3 class="nav-link" data-url="/buy">Buy</h3>
+                    <h3 class="nav-link" data-url="/sell">Sell</h3>
+                    <h3 class="nav-link" data-url="/rent">Rent</h3>
+                    <h3 class="nav-link" data-url="/exclusive">Exclusive</h3>
+                </div>
+                <div class="con3">
+                    <h2>Pages</h2>
+                    <h3 class="nav-link" data-url="/about">About us</h3>
+                    <h3 class="nav-link" data-url="/contact">Contact us</h3>
+                    <h3 class="nav-link" data-url="/policy">Privacy Policy</h3>
+                    <h3 class="nav-link" data-url="/terms">Terms & Conditions</h3>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const hlinks = document.querySelectorAll(".nav-link, .cta-btn, .logo, .nav-link-profile, .nav-plot, .nav-city");
+
+
+
+            hlinks.forEach(link => {
+                link.addEventListener("click", function () {
+                    const url = this.getAttribute('data-url');
+                    window.location.href = url
+
+                    this.classList.add('clicked');
+
+                    setTimeout(() => {
+                        this.classList.remove('clicked');
+                    }, 300);
+                })
+            });
+        });
+    </script>
+</body>
+
+</html>

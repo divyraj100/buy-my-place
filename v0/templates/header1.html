@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'header1.css' %}">
+    <title>Header1</title>
+</head>
+
+<body>
+    <div class="con-header">
+        <div class="logo" data-url="/">
+            <img src="./static/assets/logo.svg" data-url="/" alt="logo">
+        </div>
+        <div class="nav">
+            <h4 class="nav-link" data-url="/">Home</h4>
+            <h4 class="nav-link" data-url="/">Buy</h4>
+            <h4 class="nav-link" data-url="/">Sell</h4>
+            <h4 class="nav-link" data-url="/">Rent</h4>
+            <h4 class="nav-link" data-url="/">About us</h4>
+        </div>
+        <div class="cta-btn">
+            <div class="login-btn">Login</div>
+            <div class="sign-btn">SignUp</div>
+        </div>
+    </div>
+
+    <div class="con-hero">
+        <img src="./static/assets/hero-house.gif" alt="gif">
+    </div>
+
+    <script>
+        const hlinks = document.querySelectorAll(".nav-link, .logo");
+
+        hlinks.forEach(link => {
+            link.addEventListener("click", function () {
+                const url = this.getAttribute('data-url');
+                window.location.href = url
+
+                this.classList.add('clicked');
+
+                setTimeout(() => {
+                    this.classList.remove('clicked');
+                }, 300);
+            })
+        })
+
+    </script>
+</body>
+
+</html>

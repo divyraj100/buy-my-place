@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'profile_page.css' %}">
+    <title>Buy My Place</title>
+</head>
+
+<body>
+
+    <div class="main">
+        <div class="con-header">
+            <div class="logo" data-url="/">
+                <img src="{% static 'assets/logo.svg' %}" data-url="/home" alt="logo">
+            </div>
+            <div class="nav">
+                <h4 class="nav-link" data-url="/home">Home</h4>
+                <h4 class="nav-link" data-url="/buy">Buy</h4>
+                <h4 class="nav-link" data-url="/sell">Sell</h4>
+                <h4 class="nav-link" data-url="/rent">Rent</h4>
+                <h4 class="nav-link" data-url="/about">About us</h4>
+            </div>
+            <div class="cta-btn">
+                <div class="login-btn nav-link" data-url="/list_plot">List Plot</div>
+                <div class="profile nav-link-profile" data-url="{% url 'profile_page' %}"><img
+                        src="{% static 'assets/icon/icon-profile.svg' %}" alt=""></div>
+            </div>
+        </div>
+
+        <div class="con">
+            <div class="con-tabs">
+                <div class="img">
+                    <img src="{% static 'assets/icon/avatar.svg' %}" alt="">
+                    <h3>Deed Doop 
+                    {% if user.is_subscribed %}
+                       <img src="{% static 'assets/sub.svg' %}" alt=""> 
+                    {% endif %}
+                    </h3>
+                    
+                    {% if user.is_subscribed %}
+                    <div id="end">
+                        premium ends on <span>{{user.sub_end}}</span> 
+                    </div> 
+                    {% endif %}
+                        
+                </div>
+
+                <div class="tabs">
+                    <div class="t1">
+                        <img id="i1" src="{% static 'assets/icon/edit.svg' %}" alt="">
+                        <h3>Edit Profile</h3>
+                    </div>
+
+                    <div class="t2">
+                        <img id="i2" src="{% static 'assets/icon/list.svg' %}" alt="">
+                        <h3>Listed Plots</h3>
+                    </div>
+
+                    <div class="t3">
+                        <img id="i3" src="{% static 'assets/icon/message.svg' %}" alt="">
+                        <h3>Messages</h3>
+                    </div>
+                </div>
+
+                <div class="con-logout nav-logout" data-url="{% url 'custom_logout' %}">
+                    <button id="btn-logout" data-url="logout" name="btn-logout">
+                        <img src="{% static 'assets/icon/logout.svg' %}" alt="">Logout
+                    </button>
+                </div>
+            </div>
+            <div class="tab-con">
+                <div class="con-edit active">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+
+                        <div class="inp">
+                            <label for="uname">Name</label>
+                            <input type="text" name="uname" id="uname" placeholder="{{ user.name }}"
+                                value="{{ user.name }}">
+                        </div>
+
+                        <div class="inp">
+                            <label for="uphone">Phone</label>
+                            <input type="text" name="uphone" id="uphone" placeholder="2525252525"
+                                value="{{ user.phone }}">
+                        </div>
+
+                        <div class="inp">
+                            <label for="umail">Email</label>
+                            <input type="text" name="umail" id="umail" placeholder="deed12@gmail.com"
+                                value="{{ user.email }}">
+                        </div>
+
+                        <div class="btn-reset" data-url="/reset">Reset Password</div>
+
+                        <div class="con-btn">
+                            <button type="submit">Save Changes</button>
+                        </div>
+
+
+                    </form>
+
+                    <img src="{% static 'assets/icon/edit_ill.svg' %}" alt="">
+                </div>
+
+                <div class="con-listed">
+                    {% for plot in user_plots %}
+                    <div class="plot-card nav-plot" data-url="{% url 'plot_page' plot.id %}">
+                        <img src="{{ plot.pimg.url }}" alt="">
+                        <div class="con-loc-price">
+                            <h2>{{ plot.pcity }}, {{ plot.pstate }}</h2>
+                            <h2>₹ {{ plot.price }} ~ {{ plot.area }} sqft</h2>
+                        </div>
+                        <div class="con-dec">
+                            {{ plot.smsg|slice:":200" }}{% if plot.smsg|length > 200 %}...{% endif %}
+                        </div>
+                    </div>
+
+                    {% endfor %}
+
+
+                </div>
+
+                <div class="con-msg">
+                    
+                    {% if message %}
+                        {% for message in user_messages %}
+                        <div class="sub">
+                            <div class="nc">
+                                <h3>{{ message.name }} ~</h3>
+                                <div class="call">
+                                    <img src="{% static 'assets/icon/call.svg' %}" alt="">
+                                    <h3>+91 {{ message.phone }}</h3>
+                                </div>
+                            </div>
+                            <div class="msg">
+                                {{ message.message }}
+
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <h4>No Messages Received</h4>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="con-footer">
+                <div class="con1">
+
+                    <div class="sub-con1">
+                        <img class="f-logo nav-link-logo " data-url="/home" src="{% static 'assets/f-logo.svg' %}"
+                            data-url="/" alt="">
+                        <h2>Explore, Invest <br> and Build</h2>
+                    </div>
+
+
+                    <div class="social">
+                        <img class="nav-link" data-url="https://twitter.com/" src="{% static 'assets/icon/tt.svg' %}" alt=""
+                        data-url="/">
+                    <img class="nav-link" data-url="https://www.youtube.com/" src="{% static 'assets/icon/yt.svg' %}" alt=""
+                        data-url="/">
+                    <img class="nav-link" data-url="https://www.linkedin.com/" src="{% static 'assets/icon/linked.svg' %}" alt=""
+                        data-url="/list_plot">
+                    <img class="nav-link" data-url="https://www.instagram.com/" src="{% static 'assets/icon/insta.svg' %}" alt=""
+                        data-url="/list_plot">
+                    </div>
+                </div>
+                <div class="con2">
+                    <h2>Quick links</h2>
+                    <h3 class="nav-link" data-url="/buy">Buy</h3>
+                    <h3 class="nav-link" data-url="/sell">Sell</h3>
+                    <h3 class="nav-link" data-url="/rent">Rent</h3>
+                    <h3 class="nav-link" data-url="/exclusive">Exclusive</h3>
+                </div>
+                <div class="con3">
+                    <h2>Pages</h2>
+                    <h3 class="nav-link" data-url="/about">About us</h3>
+                    <h3 class="nav-link" data-url="/contact">Contact us</h3>
+                    <h3 class="nav-link" data-url="/policy">Privacy Policy</h3>
+                    <h3 class="nav-link" data-url="/terms">Terms & Conditions</h3>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabs = document.querySelectorAll('.tabs div');
+            const tabContents = document.querySelectorAll('.tab-con > div');
+
+            tabs.forEach((tab, index) => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+
+                    tab.classList.add('active');
+                    tabContents[index].classList.add('active');
+                });
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const hlinks = document.querySelectorAll(".nav-link, .btn-reset, .logo, .nav-link-profilem, .nav-plot, .nav-city, .nav-link-logo, .nav-reset, .nav-logout");
+
+
+
+            hlinks.forEach(link => {
+                link.addEventListener("click", function () {
+                    const url = this.getAttribute('data-url');
+                    window.location.href = url
+
+                    this.classList.add('clicked');
+
+                    setTimeout(() => {
+                        this.classList.remove('clicked');
+                    }, 300);
+                })
+            });
+
+        });
+
+    </script>
+
+</body>
+
+</html>

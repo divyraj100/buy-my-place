@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'about.css' %}">
+    <title>About BMP</title>
+</head>
+
+<body>
+    <div class="main">
+        <div class="con-main-hero">
+            <div class="con-header">
+                <div class="logo" data-url="/home">
+                    <img src="{% static 'assets/logo.svg' %}" data-url="/home" alt="logo">
+                </div>
+                <div class="nav">
+                    <h4 class="nav-link" data-url="/home">Home</h4>
+                    <h4 class="nav-link" data-url="/buy">Buy</h4>
+                    <h4 class="nav-link" data-url="/sell">Sell</h4>
+                    <h4 class="nav-link"
+                        data-url="/rent">
+                        Rent</h4>
+                    <h4 class="nav-link" data-url="/about">About us</h4>
+                </div>
+                <div class="cta-btn">
+                    <div class="login-btn nav-link" data-url="/list_plot">List Plot</div>
+                    <div class="profile nav-link-profile" data-url="{% url 'profile_page' %}">
+                        <img data-url="{% url 'profile_page' %}" class="nav-link-profile"
+                            src="{% static 'assets/icon/icon-profile.svg' %}" alt="">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="con">
+            <div class="sub1">
+                <h1>BUY MY PLACE ~ Your Ultimate Destination for Real Estate Excellence!</h1>
+                <p>we're not just a real estate platform; we're a community that empowers property enthusiasts to buy
+                    and sell with confidence. Our journey began with a simple yet powerful idea: to redefine the real
+                    estate experience.</p>
+            </div>
+            <div class="sub2">
+                <h1>Vision</h1>
+                <p>Our mission is to create a platform that transforms the way you buy and sell property. We strive to
+                    provide a seamless experience, combining cutting-edge technology with a human touch. Whether you're
+                    a seller looking to list your property or a buyer in search of the ideal place, Buy My Place</p>
+            </div>
+            <div class="sub2">
+                <h1>Mission</h1>
+                <p>Our mission is to create a platform that transforms the way you buy and sell property. We strive to
+                    provide a seamless experience, combining cutting-edge technology with a human touch. Whether you're
+                    a seller looking to list your property or a buyer in search of the ideal place, Buy My Place
+                    is here to guide you at every step.</p>
+            </div>
+            <div class="sub2">
+                <h1>Why Buy My Place?</h1>
+                <div class="tt">~ "Buy My Place" - Your Personal Real Estate Concierge</div>
+                <p>Experience the simplicity of listing your property with "Buy My Place." Connect directly with
+                    potential buyers, showcase your property's unique charm, and enjoy top visibility in search results.
+                </p>
+            </div>
+            <div class="sub2">
+                <div class="tt">~ Direct Connections, Trusted Deals</div>
+                <p>We believe in fostering direct connections between buyers and sellers. No middlemen, no
+                    complications. Just genuine interactions and trusted deals.
+                </p>
+            </div>
+            <div class="sub2">
+                <div class="tt">~ Subscribers' Advantage
+                </div>
+                <p>Unlock the full potential of your property listings with our subscription service. Subscribers enjoy
+                    premium visibility, ensuring their properties stand out in search results.
+                </p>
+            </div>
+            <div class="sub2">
+                <div class="tt">~ Rent My Place - Hassle-Free Rentals
+                </div>
+                <p>Looking to rent? Our platform makes it easy to connect with property owners, explore trusted
+                    partnerships, and secure your dream rental.
+                </p>
+            </div>
+            <div class="sub2">
+                <h1 id="tt">Your Dream Property Awaits – Start Exploring Today!
+                </h1>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="con-footer">
+                <div class="con1">
+
+                    <div class="sub-con1">
+                        <img class="f-logo nav-link " data-url="/home" src="{% static 'assets/f-logo.svg' %}"
+                            data-url="/" alt="">
+                        <h2>Explore, Invest <br> and Build</h2>
+                    </div>
+
+
+                    <div class="social">
+                        <img class="nav-link" data-url="https://twitter.com/" src="{% static 'assets/icon/tt.svg' %}" alt=""
+                        data-url="/">
+                    <img class="nav-link" data-url="https://www.youtube.com/" src="{% static 'assets/icon/yt.svg' %}" alt=""
+                        data-url="/">
+                    <img class="nav-link" data-url="https://www.linkedin.com/" src="{% static 'assets/icon/linked.svg' %}" alt=""
+                        data-url="/list_plot">
+                    <img class="nav-link" data-url="https://www.instagram.com/" src="{% static 'assets/icon/insta.svg' %}" alt=""
+                        data-url="/list_plot">
+                    </div>
+                </div>
+                <div class="con2">
+                    <h2>Quick links</h2>
+                    <h3 class="nav-link" data-url="/buy">Buy</h3>
+                    <h3 class="nav-link" data-url="/sell">Sell</h3>
+                    <h3 class="nav-link" data-url="/rent">Rent</h3>
+                    <h3 class="nav-link" data-url="/exclusive">Exclusive</h3>
+                </div>
+                <div class="con3">
+                    <h2>Pages</h2>
+                    <h3 class="nav-link" data-url="/about">About us</h3>
+                    <h3 class="nav-link" data-url="/contact">Contact us</h3>
+                    <h3 class="nav-link" data-url="/policy">Privacy Policy</h3>
+                    <h3 class="nav-link" data-url="/terms">Terms & Conditions</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+         document.addEventListener('DOMContentLoaded', function () {
+            const hlinks = document.querySelectorAll(".nav-link, .logo, .nav-link-profile, .nav-plot, .nav-city, .nav-link-logo, .nav-reset");
+
+
+
+            hlinks.forEach(link => {
+                link.addEventListener("click", function () {
+                    const url = this.getAttribute('data-url');
+                    window.location.href = url
+
+                    this.classList.add('clicked');
+
+                    setTimeout(() => {
+                        this.classList.remove('clicked');
+                    }, 300);
+                })
+            });
+
+        });
+    </script>
+</body>
+
+</html>

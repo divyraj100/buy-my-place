@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
+    <title>Forget password</title>
+
+</head>
+
+<body>
+    <div class="main">
+        <div class="con-header">
+            <div class="logo" data-url="/">
+                <img src="{% static 'assets/logo.svg' %}" data-url="/" alt="logo">
+            </div>
+            <div class="nav">
+                <h4 class="nav-link" data-url="/">Home</h4>
+                <h4 class="nav-link" data-url="/buy">Buy</h4>
+                <h4 class="nav-link" data-url="/sell">Sell</h4>
+                <h4 class="nav-link" data-url="/rent">Rent</h4>
+                <h4 class="nav-link" data-url="/about">About us</h4>
+            </div>
+            <div class="cta-btn">
+                <div class="login-btn nav-link" data-url="/login">List Plot</div>
+                <div class="profile nav-link-profile" data-url="/home"><img
+                        src="{% static 'assets/icon/icon-profile.svg' %}" alt=""></div>
+            </div>
+        </div>
+
+        <div class="con-auth">
+            <div class="con-ill">
+                <img src="{% static 'assets/icon/auth_illu.svg' %}" alt="">
+                <p> <span>Welcome back!</span> <br>Please login to access your account and explore our services.</p>
+            </div>
+            <div class="con-form">
+
+                {% comment %} <form action="" method="POST" class="con-reg-form">
+                    {% csrf_token %}
+                    <div class="reg-form">
+                        <div class="f-copy">
+                            <h3>Create account</h3>
+                            <p>Buy, Sell and rent now</p>
+                        </div>
+
+                        <div class="con-input">
+                            <div class="inp-filed">
+                                <div class="input-txt">Full Name</div>
+                                <div class="input"><input type="text" name="fname" id="fname" placeholder="Deed Doop"
+                                        required></div>
+                            </div>
+
+                            <div class="inp-filed">
+                                <div class="input-txt">Email</div>
+                                <div class="input"><input type="r-email" name="r-mail" id="mail"
+                                        placeholder="bob12@gmailc.com"
+                                        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" required></div>
+                            </div>
+                            <div class="inp-filed">
+                                <div class="input-txt">Phone</div>
+                                <div class="input"><input type="tel" name="r-phone" id="r-phone" pattern="[0-9]{10}"
+                                        inputmode="numeric" placeholder="10-digit mobile" maxlength="10" required></div>
+                            </div>
+                            <div class="inp-filed">
+                                <div class="input-txt">Create password</div>
+                                <div class="input"><input type="password" name="r-cpass" id="r-cpass" minlength="8"
+                                        max="10" placeholder="password" required></div>
+                            </div>
+
+                            <button class="btn-sign" type="submit" id="btn-reg" name="btn-reg">Register now</button>
+                            <button type="button" class="toggle-form nav-btn" data-url="/home"
+                                data-target="login">Already have an
+                                account? Login now </button>
+
+                        </div>
+
+                    </div>
+
+                </form> {% endcomment %}
+
+                <form action="{% url 'forget'%}" method="POST" class="con-login-form">
+                    {% csrf_token %}
+                    <div class="log-form">
+                        <div class="f-copy">
+                            <h3>Forget password</h3>
+                            <p>Enter registered email</p>
+                        </div>
+
+                        <div class="con-input">
+                            <div class="inp-filed">
+                                <div class="input-txt">Email</div>
+                                <div class="input"><input type="mail" name="email" id="u-name"
+                                        placeholder="Enter email" required></div>
+                            </div>
+
+
+                            <button class="btn-sign" type="submit" id="btn-log" name="btn-log">Submit</button>
+        
+                        </div>
+                        {% if  cus_msg %}
+                        <div class="custom-message">
+                            {{ cus_msg }}
+                        </div>
+                        {% endif %}
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            <div class="con-footer">
+                <div class="con1">
+
+                    <div class="sub-con1">
+                        <img class="f-logo nav-link " data-url="/" src="{% static 'assets/f-logo.svg' %}" data-url="/" alt="">
+                        <h2>Explore, Invest <br> and Build</h2>
+                    </div>
+
+
+                    <div class="social">
+                        <img class="nav-link" data-url="https://twitter.com/" src="{% static 'assets/icon/tt.svg' %}" alt=""
+                            data-url="/">
+                        <img class="nav-link" data-url="https://www.youtube.com/" src="{% static 'assets/icon/yt.svg' %}" alt=""
+                            data-url="/">
+                        <img class="nav-link" data-url="https://www.linkedin.com/" src="{% static 'assets/icon/linked.svg' %}" alt=""
+                            data-url="/list_plot">
+                        <img class="nav-link" data-url="https://www.instagram.com/" src="{% static 'assets/icon/insta.svg' %}" alt=""
+                            data-url="/list_plot">
+                    </div>
+                </div>
+                <div class="con2">
+                    <h2>Quick links</h2>
+                    <h3 class="nav-link" data-url="/buy">Buy</h3>
+                    <h3 class="nav-link" data-url="/sell">Sell</h3>
+                    <h3 class="nav-link" data-url="/rent">Rent</h3>
+                    <h3 class="nav-link" data-url="/exclusive">Exclusive</h3>
+                </div>
+                <div class="con3">
+                    <h2>Pages</h2>
+                    <h3 class="nav-link" data-url="/about">About us</h3>
+                    <h3 class="nav-link" data-url="/contact">Contact us</h3>
+                    <h3 class="nav-link" data-url="/policy">Privacy Policy</h3>
+                    <h3 class="nav-link" data-url="/terms">Terms & Conditions</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const hlinks = document.querySelectorAll(".nav-link, .logo, .nav-link-profile, .nav-btn");
+
+
+
+            hlinks.forEach(link => {
+                link.addEventListener("click", function () {
+                    const url = this.getAttribute('data-url');
+                    window.location.href = url
+
+                    this.classList.add('clicked');
+
+                    setTimeout(() => {
+                        this.classList.remove('clicked');
+                    }, 300);
+                })
+            });
+        });
+    </script>
+
+</body>
+
+</html>

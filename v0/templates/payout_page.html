@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'payout_page.css' %}">
+    <title>Buy My Place</title>
+</head>
+
+<body>
+
+    <div class="main">
+        <div class="con-main-hero">
+            <div class="con-header">
+                <div class="logo" data-url="/home">
+                    <img src="{% static 'assets/logo.svg' %}" data-url="/home" alt="logo">
+                </div>
+                <div class="nav">
+                    <h4 class="nav-link" data-url="/home">Home</h4>
+                    <h4 class="nav-link" data-url="/buy">Buy</h4>
+                    <h4 class="nav-link" data-url="/sell">Sell</h4>
+                    <h4 class="nav-link" data-url="/rent">
+                        Rent</h4>
+                    <h4 class="nav-link" data-url="/about">About us</h4>
+                </div>
+                <div class="cta-btn">
+                    <div class="login-btn nav-link" data-url="/list_plot">List Plot</div>
+                    <div class="profile nav-link-profile" data-url="{% url 'profile_page' %}">
+                        <img data-url="{% url 'profile_page' %}" class="nav-link-profile"
+                            src="{% static 'assets/icon/icon-profile.svg' %}" alt="">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="con">
+            <div class="con-tabs">
+                <div class="title">
+                    <h3>Payment methods</h3>
+                </div>
+
+                <div class="tabs">
+                    <div class="t1">
+                        <img src="{% static 'assets/icon/card.svg' %}" alt="">
+                        <h3>Credit/Debit</h3>
+                    </div>
+
+                    <div class="t2">
+                        <img src="{% static 'assets/icon/upi.svg' %}" alt="">
+                        <h3>UPI</h3>
+                    </div>
+
+                    <div class="t3">
+                        <img src="{% static 'assets/icon/bank.svg' %}" alt="">
+                        <h3>Bank</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-con" id="blur">
+                <div class="con-card active">
+                    <div class="sub-con">
+                        <div class="tt-amt">
+                            <h3>Enter Credit / Debit Card detials</h3>
+                            <h3 id="amt">Amount ₹ 1001</h3>
+                        </div>
+
+                        <div class="inp">
+                            <label for="c-number">Card Number</label>
+                            <div class="in">
+                                <input id="c-number" maxlength="19" name="c-number" type="tel"
+                                    placeholder="Enter Card Number" inputmode="numeric" required
+                                    pattern="\d{4}-\d{4}-\d{4}-\d{4}"
+                                    oninput="this.value = this.value.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1-').slice(0, 19)"
+                                    data-allow-spaces="true">
+                                <img src="{% static 'assets/icon/card.svg' %}" alt="">
+                            </div>
+
+                        </div>
+
+                        <div class="con-inp">
+                            <div class="inp">
+                                <label for="c-expdate">Expire Date</label>
+                                <div class="in">
+                                    <input id="c-expdate" name="c-expdate" type="tel" placeholder="MM/YY" required
+                                        pattern="(0[1-9]|1[0-2])\/\d{2}"
+                                        oninput="this.value = this.value.replace(/[^\d\/]/g, '').replace(/(\d{2})\/?(\d{0,2}).*$/, '$1/$2')"
+                                        data-allow-slashes="true">
+                                </div>
+                            </div>
+                            <div class="inp">
+                                <label for="c-cvv">CVV</label>
+                                <div class="in">
+                                    <input id="c-cvv" name="c-cvv" type="tel" placeholder="CVV" inputmode="numeric"
+                                        required maxlength="3" pattern="\d{3}">
+                                </div>
+                            </div>
+                        </div>
+                        <form id="paymentForm" action="{% url 'payout_page' %}" method="POST">
+                            {% csrf_token %}
+                            <!-- ... other payment details ... -->
+                            <input type="hidden" name="is_subscribed" value="false">
+                            <div class="con-pay">
+                                <button name="btn-pay" type="submit">Pay now</button>
+                            </div>
+                        </form>
+                        <p class="cus_msg">{{cus_msg}}</p>
+                        
+
+                    </div>
+
+                </div>
+                <div class="con-upi">
+                    <div class="sub-con">
+                        <div class="tt-amt">
+                            <h3>Scanner QR code for UPI payment</h3>
+                            <h3 id="amt">Amount ₹ 1001</h3>
+                        </div>
+
+                        <div class="img">
+                            <img src="{% static 'assets/icon/qr.svg' %}" alt="">
+                        </div>
+
+                        <div class="inp">
+                            <label for="c-uid">Enter UPI ID</label>
+                            <div class="in">
+                                <input id="c-uid" name="c-uid" type="text" placeholder="Usename@bankname">
+                            </div>
+
+                        </div>
+
+
+                        <form id="paymentForm" action="{% url 'payout_page' %}" method="POST">
+                            {% csrf_token %}
+                            <!-- ... other payment details ... -->
+                            <input type="hidden" name="is_subscribed" value="false">
+                            <div class="con-pay">
+                                <button name="btn-pay" type="submit">Pay now</button>
+                            </div>
+                         
+                        </form>
+                        <p class="cus_msg">{{cus_msg}}</p>
+                        
+                    </div>
+
+
+                    <div class="con-gif">
+                        <img src="{% static 'assets/qr.gif' %}" alt="">
+                    </div>
+
+                </div>
+                <div class="con-net">
+                    <div class="tt-amt">
+                        <h3>Net Banking</h3>
+                        <h3 id="amt">Amount ₹ 1001</h3>
+                    </div>
+
+                    <div class="i-bank">
+                        <div class="con">
+                            <img src="{% static 'assets/icon/hdfc.svg' %}" alt="">
+                            <h4>HDFC</h4>
+                        </div>
+                        <div class="con">
+                            <img src="{% static 'assets/icon/axixs.svg' %}" alt="">
+                            <h4>AXIS</h4>
+                        </div>
+                        <div class="con">
+                            <img src="{% static 'assets/icon/icici.svg' %}" alt="">
+                            <h4>ICICI</h4>
+                        </div>
+                    </div>
+
+                    <div class="sel-bank">
+                        <select>
+                            <option value="">Select a Bank</option>
+                            <option value="bank_of_baroda">Bank of Baroda</option>
+                            <option value="kanra_bank">Kanra Bank</option>
+                            <option value="punjab_national_bank">Punjab National Bank</option>
+                            <option value="kotak_mahindra">Kotak Mahindra</option>
+                            <option value="state_bank_of_india">State Bank of India</option>
+                        </select>
+                    </div>
+
+
+                    <form id="paymentForm" action="{% url 'payout_page' %}" method="POST">
+                        {% csrf_token %}
+                        <!-- ... other payment details ... -->
+                        <input type="hidden" name="is_subscribed" value="false">
+                        <div class="con-pay">
+                            <button name="btn-pay" type="submit">Pay now</button>
+                        </div>
+                    </form>
+                    <p class="cus_msg">{{cus_msg}}</p>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="pop" id="popup">
+            <img src="{% static 'assets/icon/suc-icon.svg' %}" alt="">
+            <h3>You payment has been successful!!!</h3>
+            <button class="nav-logout" data-url="home">Return to home</button>
+        </div>
+
+        <div class="footer">
+            <div class="con-footer">
+                <div class="con1">
+
+                    <div class="sub-con1">
+                        <img class="f-logo nav-link " data-url="/" src="./static/assets/f-logo.svg" data-url="/" alt="">
+                        <h2>Explore, Invest <br> and Build</h2>
+                    </div>
+
+
+                    <div class="social">
+                        <img class="nav-link" data-url="https://twitter.com/" src="{% static 'assets/icon/tt.svg' %}" alt=""
+                            data-url="/">
+                        <img class="nav-link" data-url="https://www.youtube.com/" src="{% static 'assets/icon/yt.svg' %}" alt=""
+                            data-url="/">
+                        <img class="nav-link" data-url="https://www.linkedin.com/" src="{% static 'assets/icon/linked.svg' %}" alt=""
+                            data-url="/list_plot">
+                        <img class="nav-link" data-url="https://www.instagram.com/" src="{% static 'assets/icon/insta.svg' %}" alt=""
+                            data-url="/list_plot">
+                    </div>
+                </div>
+                <div class="con2">
+                    <h2>Quick links</h2>
+                    <h3  class="nav-link" data-url="/buy">Buy</h3>
+                    <h3  class="nav-link" data-url="/sell">Sell</h3>
+                    <h3  class="nav-link" data-url="/rent">Rent</h3>
+                    <h3  class="nav-link" data-url="/exclusive">Exclusive</h3>
+                </div>
+                <div class="con3">
+                    <h2>Pages</h2>
+                    <h3 class="nav-link" data-url="/about">About us</h3>
+                    <h3 class="nav-link" data-url="/contact">Contact us</h3>
+                    <h3 class="nav-link" data-url="/policy">Privacy Policy</h3>
+                    <h3 class="nav-link" data-url="/terms">Terms & Conditions</h3>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabs = document.querySelectorAll('.tabs > div');
+            const tabContents = document.querySelectorAll('.tab-con > div');
+
+            tabs.forEach((tab, index) => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+
+                    tab.classList.add('active');
+                    tabContents[index].classList.add('active');
+                });
+            });
+        });
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const hlinks = document.querySelectorAll(".nav-link, .logo, .nav-link-profile, .nav-plot, .nav-city, .nav-link-logo, .nav-reset, .nav-logout");
+
+
+
+            hlinks.forEach(link => {
+                link.addEventListener("click", function () {
+                    const url = this.getAttribute('data-url');
+                    window.location.href = url
+
+                    this.classList.add('clicked');
+
+                    setTimeout(() => {
+                        this.classList.remove('clicked');
+                    }, 300);
+                })
+            });
+
+        });
+
+        function submitPaymentForm() {
+            // Assuming you have a hidden input field for is_subscribed
+            // and it's initially set to false
+            document.getElementById("id_is_subscribed").value = "true";
+
+            // Submit the form
+            document.getElementById("paymentForm").submit();
+
+        }
+
+        function toggle() {
+            console.log("Toggle function executed");
+            var popup = document.getElementById('popup');
+            popup.classList.toggle('show');
+            var blur = document.getElementById('blur');
+            blur.classList.toggle('blurred');
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>

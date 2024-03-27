@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy My Place</title>
+    <link rel="stylesheet" href="{% static 'search_page.css' %}">
+</head>
+
+<body>
+    <div class="main">
+        <div class="con-header">
+            <div class="logo" data-url="/home">
+                <img src="{% static 'assets/logo.svg' %}" data-url="/" alt="logo">
+            </div>
+            <div class="nav">
+                <h4 class="nav-link" data-url="/home">Home</h4>
+                <h4 class="nav-link" data-url="/buy">Buy</h4>
+                <h4 class="nav-link" data-url="/sell">Sell</h4>
+                <h4 class="nav-link" data-url="/rent">Rent</h4>
+                <h4 class="nav-link" data-url="/about">About us</h4>
+            </div>
+            <div class="cta-btn">
+                <div class="login-btn nav-link" data-url="/list_plot">List Plot</div>
+                <div class="profile nav-link-profile" data-url="/profile_page"><img
+                        src="{% static 'assets/icon/icon-profile.svg' %}" alt=""></div>
+            </div>
+        </div>
+
+        <div class="con">
+            <div class="con-sort">
+                <h2>Sort by Filters</h2>
+                <form action="{% url 'search_plots' %}" method="GET">
+                    {% csrf_token %}
+
+                    <!-- Use a hidden input field for rent -->
+                    <input type="hidden" id="rent-checkbox" name="rent-checkbox" value="">
+
+                    <div class="custom-checkbox" onclick="toggleRentCheckbox()">
+                        <input type="checkbox" id="rent-checkbox-visible" class="hidden-radio">
+                        <label for="rent-checkbox-visible" class="custom-label">For rent</label>
+                    </div>
+
+
+                    <div class="con-price">
+                        <h2>Price</h2>
+                        <div class="custom-radio">
+                            <input type="radio" id="price-radio1" name="price-radio" value='1' class="hidden-radio">
+                            <label for="price-radio1" class="custom-label">₹10lac - ₹50lac</label>
+                        </div>
+
+                        <div class="custom-radio">
+                            <input type="radio" id="price-radio2" name="price-radio" value='2' class="hidden-radio">
+                            <label for="price-radio2" class="custom-label">₹50lac - ₹1cr</label>
+                        </div>
+
+                        <div class="custom-radio">
+                            <input type="radio" id="price-radio3" name="price-radio" value='3' class="hidden-radio">
+                            <label for="price-radio3" class="custom-label">₹1cr and above</label>
+                        </div>
+                    </div>
+
+                    <div class="con-area">
+                        <h2>Area</h2>
+                        <div class="custom-radio">
+                            <input type="radio" id="area-radio1" name="area-radio" value='4' class="hidden-radio">
+                            <label for="area-radio1" class="custom-label">0sq.ft - 500sq.ft</label>
+                        </div>
+
+                        <div class="custom-radio">
+                            <input type="radio" id="area-radio2" name="area-radio" value='5' class="hidden-radio">
+                            <label for="area-radio2" class="custom-label">500sq.ft - 1000sq.ft</label>
+                        </div>
+
+                        <div class="custom-radio">
+                            <input type="radio" id="area-radio3" name="area-radio" value='6' class="hidden-radio">
+                            <label for="area-radio3" class="custom-label">1000sq.ft and above</label>
+                        </div>
+                    </div>
+
+                    <div class="con-face">
+                        <h2>Facing Direction</h2>
+                        <div class="custom-radio">
+                            <input type="radio" id="face-radio1" name="face-radio" value='7' class="hidden-radio">
+                            <label for="face-radio1" class="custom-label">+ East</label>
+                        </div>
+
+                        <div class="custom-radio">
+                            <input type="radio" id="face-radio2" name="face-radio" value='8' class="hidden-radio">
+                            <label for="face-radio2" class="custom-label">+ North</label>
+                        </div>
+
+                        <div class="custom-radio">
+                            <input type="radio" id="face-radio3" name="face-radio" value='9' class="hidden-radio">
+                            <label for="face-radio3" class="custom-label">+ South</label>
+                        </div>
+
+                        <div class="custom-radio">
+                            <input type="radio" id="face-radio4" name="face-radio" value='10' class="hidden-radio">
+                            <label for="face-radio4" class="custom-label">+ South East</label>
+                        </div>
+
+                        <div class="custom-radio">
+                            <input type="radio" id="face-radio5" name="face-radio" value='11' class="hidden-radio">
+                            <label for="face-radio5" class="custom-label">+ North East</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" name="btn-sort" id="btn-sort" class="btn-sort">Apply Filter</button>
+                    <button class="btn-reset nav-reset" id="btn-reset" data-url="search_plots/">Reset</button>
+                </form>
+            </div>
+
+            <div class="con-plots">
+                <div class="con-search-bar">
+                    <form action="{% url 'search_plots' %}" method="GET">
+                        <input type="text" name="search-txt" value="{{ query }}" placeholder="Type city or state">
+                        <button type="submit">
+                            <img src="{% static 'assets/icon/search.svg' %}" alt="">
+                        </button>
+                    </form>
+
+                </div>
+
+                <div class="con-card">
+
+
+                    {% if plots %}
+                        {% for plot in plots %}
+                        <div class="plot-card nav-plot" data-url="{% url 'plot_page' plot.id %}" style="cursor: pointer;">
+                            <img src="{{ plot.pimg.url }}" alt="">
+                            <div class="con-loc-price">
+                                <h2>{{ plot.pcity }}, {{ plot.pstate }}</h2>
+                                <h2>₹ {{ plot.price }} ~ {{ plot.area }} sqft</h2>
+                            </div>
+                            <div class="con-dec">
+                                {{ plot.smsg|slice:":300" }}{% if plot.smsg|length > 300 %}...{% endif %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                    <h3>No Plots found for search query</h3>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="con-footer">
+                <div class="con1">
+
+                    <div class="sub-con1">
+                        <img class="f-logo nav-link-logo " data-url="/home" src="{% static 'assets/f-logo.svg' %}"
+                            alt="">
+                        <h2>Explore, Invest <br> and Build</h2>
+                    </div>
+
+
+                    <div class="social">
+                        <img class="nav-link" data-url="https://twitter.com/" src="{% static 'assets/icon/tt.svg' %}"
+                            alt="" data-url="/">
+                        <img class="nav-link" data-url="https://www.youtube.com/"
+                            src="{% static 'assets/icon/yt.svg' %}" alt="" data-url="/">
+                        <img class="nav-link" data-url="https://www.linkedin.com/"
+                            src="{% static 'assets/icon/linked.svg' %}" alt="" data-url="/list_plot">
+                        <img class="nav-link" data-url="https://www.instagram.com/"
+                            src="{% static 'assets/icon/insta.svg' %}" alt="" data-url="/list_plot">
+                    </div>
+                </div>
+                <div class="con2">
+                    <h2>Quick links</h2>
+                    <h3 class="nav-link" data-url="/buy">Buy</h3>
+                    <h3 class="nav-link" data-url="/sell">Sell</h3>
+                    <h3 class="nav-link" data-url="/rent">Rent</h3>
+                    <h3 class="nav-link" data-url="/exclusive">Exclusive</h3>
+                </div>
+                <div class="con3">
+                    <h2>Pages</h2>
+                    <h3 class="nav-link" data-url="/about">About us</h3>
+                    <h3 class="nav-link" data-url="/contact">Contact us</h3>
+                    <h3 class="nav-link" data-url="/policy">Privacy Policy</h3>
+                    <h3 class="nav-link" data-url="/terms">Terms & Conditions</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const hlinks = document.querySelectorAll(".nav-link, .logo, .nav-link-profile, .nav-plot, .nav-city, .nav-link-logo, .nav-reset");
+
+
+
+            hlinks.forEach(link => {
+                link.addEventListener("click", function () {
+                    const url = this.getAttribute('data-url');
+                    window.location.href = url
+
+                    this.classList.add('clicked');
+
+                    setTimeout(() => {
+                        this.classList.remove('clicked');
+                    }, 300);
+                })
+            });
+
+        });
+
+        function toggleRentCheckbox() {
+            var rentCheckbox = document.getElementById("rent-checkbox");
+            var visibleCheckbox = document.getElementById("rent-checkbox-visible");
+
+            // Toggle the value between "rent" and an empty string
+            rentCheckbox.value = (visibleCheckbox.checked) ? 'rent' : "";
+            console.log("Rent Checkbox Value:", rentCheckbox.value);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
+    <title>Buy My Place</title>
+
+    <style>
+        .con-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            height: 5vw;
+            margin: 1.5vw auto;
+            padding: 0 .2vw;
+            border-top: 1px solid #2F2E41;
+            border-bottom: 1px solid #2F2E41;
+
+        }
+
+        .logo {
+            display: flex;
+            font-size: 1vw;
+            cursor: pointer;
+        }
+
+        .nav {
+            display: flex;
+            margin: 0 auto;
+        }
+
+        .nav h4 {
+            margin-right: 88px;
+            font-weight: 600;
+            color: #2F2E41;
+            font-size: 1.2vw;
+            cursor: pointer;
+        }
+
+        .nav>h4:last-child {
+            margin-right: 0;
+        }
+
+        .nav-link:hover {
+            border-top: 1px solid #FF6884;
+            border-bottom: 1px solid #FF6884;
+            color: #FF6884;
+            transform: 2s ease-in;
+            margin-top: -0.1vw;
+        }
+
+        .cta-btn {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+
+        .login-btn {
+            padding: .6vw 1vw;
+            border: 1px solid #FF6884;
+            border-radius: 12px;
+            color: #2F2E41;
+            margin-right: 1.2vw;
+
+        }
+
+        .login-btn:hover {
+            background-color: #FF6884;
+            color: #f2f2f2;
+        }
+
+        .profile {
+            height: auto;
+            width: auto;
+            border-radius: 50%;
+            align-content: center;
+            justify-content: center;
+        }
+
+        .profile img {
+            /* height: 34px;
+            width: 34px; */
+            margin: auto;
+            border-radius: 50%;
+            border: 1px solid #FF6884;
+        }
+
+        .footer {
+            width: 100%;
+            height: 100%;
+            margin-bottom: 2vw;
+        }
+
+        .con-footer {
+            display: flex;
+            align-items: start;
+            justify-content: center;
+            width: 98%;
+            padding: 2vw .5vw;
+            border-radius: 12px;
+            margin: 0 auto;
+            align-items: center;
+            justify-content: space-around;
+            background-color: #2F2E41;
+        }
+
+        .con1 {
+            display: flex;
+            flex-direction: column;
+
+        }
+
+        .sub-con1 {
+            display: flex;
+            flex-direction: column;
+            margin-top: -1vw;
+            margin-bottom: 1.8vw;
+        }
+
+        .sub-con1 img {
+            width: 8vw;
+            height: 6vw;
+            cursor: pointer;
+        }
+
+        .sub-con1 img:hover {
+            border: none;
+        }
+
+        .sub-con1 h2 {
+            font-size: 2vw;
+            font-family: 500;
+            color: #F6F6F6;
+        }
+
+        .con2 {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .con2 h2 {
+            font-size: 1.7vw;
+            margin-bottom: 1.1vw;
+            color: #F6F6F6;
+        }
+
+        .con2 h3 {
+            font-size: 1.2vw;
+            color: #F6F6F6;
+            margin-bottom: 1vw;
+        }
+
+        .con2 h3:hover {
+            border-top: 1px solid #FF6884;
+            border-bottom: 1px solid #FF6884;
+            color: #FF6884;
+            transform: 2s ease-in;
+            cursor: pointer;
+        }
+
+        .con3 {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .con3 h2 {
+            font-size: 1.7vw;
+            margin-bottom: 1.1vw;
+            color: #F6F6F6;
+        }
+
+        .con3 h3 {
+            font-size: 1.2vw;
+            color: #F6F6F6;
+            margin-bottom: 1vw;
+        }
+
+        .con3 h3:hover {
+            border-top: 1px solid #FF6884;
+            border-bottom: 1px solid #FF6884;
+            color: #FF6884;
+            transform: 2s ease-in;
+            cursor: pointer;
+        }
+
+        .social {
+            display: flex;
+            cursor: pointer;
+        }
+
+        .social img {
+            margin-right: 1.6vw;
+            height: 24px;
+            width: 24px;
+        }
+
+        .social img:last-child {
+            margin-right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="con-main-hero">
+            <div class="con-header">
+                <div class="logo" data-url="/home">
+                    <img src="{% static 'assets/logo.svg' %}" data-url="/home" alt="logo">
+                </div>
+                <div class="nav">
+                    <h4 class="nav-link" data-url="/home">Home</h4>
+                    <h4 class="nav-link" data-url="/buy">Buy</h4>
+                    <h4 class="nav-link" data-url="/sell">Sell</h4>
+                    <h4 class="nav-link"
+                        data-url="/rent">
+                        Rent</h4>
+                    <h4 class="nav-link" data-url="/about">About us</h4>
+                </div>
+                <div class="cta-btn">
+                    <div class="login-btn nav-link" data-url="/list_plot">List Plot</div>
+                    <div class="profile nav-link-profile" data-url="{% url 'profile_page' %}">
+                        <img data-url="{% url 'profile_page' %}" class="nav-link-profile"
+                            src="{% static 'assets/icon/icon-profile.svg' %}" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="con-hero">
+                <img src="{% static 'assets/hero-house.gif' %}" alt="gif">
+            </div>
+
+            <div class="hero-copy">
+                <h2>Buy My Place</h2>
+                <h3>Explore, Invest, and Build</h3>
+            </div>
+
+            <div class="con-search-bar">
+                <div class="loc-icon"><img src="{% static 'assets/ep_place.svg' %}"></div>
+                <div class="line"></div>
+                <form action="{% url 'search_plots' %}" method="GET">
+                    <div class="search-inp">
+                        <input type="text" name="search-txt" placeholder="Type city or state">
+                    </div>
+                    <button type="submit">Find</button>
+                </form>
+
+            </div>
+        </div>
+
+
+        <div class="con-latest-plot">
+            <div class="bar">
+                <h3><span>Recent-Plots</span></h3>
+                <div class="line"></div>
+                <p data-url="/search_plots" class="btn-all"><span>Show-all</span></p>
+            </div>
+
+            <div class="con-plot-card">
+                {% for plot in latest_plots %}
+                <div class="plot-card nav-plot"  style="cursor:pointer;" data-url="{% url 'plot_page' plot.id %}">
+                    <div class="img"><img src="{{ plot.pimg.url }}" alt="plot img"></div>
+                    <div class="con-plot">
+                        <div class="area">
+                            <img src="{% static 'assets/icon/carbon_area.svg' %}" alt="">
+                            <h4> Area {{ plot.area }}</h4>
+                        </div>
+                        <p id="sqft">Rs {{ plot.sprice }}</p>
+                        <div class="add">
+                            <img src="{% static 'assets/icon/location.svg' %}" alt="">
+                            {{ plot.pcity }}, {{ plot.pstate }}
+                        </div>
+                        <p class="plot-dec">
+                            {{ plot.smsg|slice:":100" }}{% if plot.smsg|length > 100 %}...{% endif %}
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+
+
+        </div>
+
+        <div class="con-city">
+            <h2>Find Plots in Top Cities</h2>
+            <div class="grid">
+                <div class="card-city nav-city"  style="cursor:pointer;" data-url="/search_plots/?search-txt=Mumbai">
+                    <img src="{% static '/assets/mumbai.webp' %}" alt="">
+                    <p>Mumbai</p>
+                </div>
+                <div class="card-city nav-city"  style="cursor:pointer;" data-url="/search_plots/?search-txt=Delhi">
+                    <img src="{% static '/assets/delhi.webp' %}" alt="">
+                    <p>Delhi</p>
+                </div>
+                <div class="card-city nav-city"  style="cursor:pointer;" data-url="/search_plots/?search-txt=Surat">
+                    <img src="{% static '/assets/surat.webp' %}" alt="">
+                    <p>Surat</p>
+                </div>
+                <div class="card-city nav-city"  style="cursor:pointer;" data-url="/search_plots/?search-txt=Ahmendabad">
+                    <img src="{% static '/assets/delhi.webp' %}" alt="">
+                    <p>Ahmendabad</p>
+                </div>
+                <div class="card-city nav-city"  style="cursor:pointer;" data-url="/search_plots/?search-txt=Hyderabad">
+                    <img src="{% static '/assets/hyderabad.webp' %}" alt="">
+                    <p>Hyderabad</p>
+                </div>
+                <div class="card-city nav-city"  style="cursor:pointer;" data-url="/search_plots/?search-txt=Chennai">
+                    <img src="{% static '/assets/chennai.webp' %}" alt="">
+                    <p>Chennai</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="con-my-sub">
+            <img src="{% static '/assets/sub_ill.svg' %}" alt="">
+            <h2> <span>Be in the Know!</span> Subscribers Get First Dibs on <br>
+                New Properties and Special Offers in <span>only Rs 1001</span></h2>
+            <button class="nav-link" data-url="{% url 'exclusive_page'%}">Get Exclusive Access</button>
+        </div>
+
+        <div class="footer">
+            <div class="con-footer">
+                <div class="con1">
+
+                    <div class="sub-con1">
+                        <img class="f-logo nav-link " data-url="/home" src="{% static 'assets/f-logo.svg' %}"
+                            data-url="/" alt="">
+                        <h2>Explore, Invest <br> and Build</h2>
+                    </div>
+
+
+                    <div class="social">
+                        <img class="nav-link" data-url="https://twitter.com/" src="{% static 'assets/icon/tt.svg' %}" alt=""
+                        data-url="/">
+                    <img class="nav-link" data-url="https://www.youtube.com/" src="{% static 'assets/icon/yt.svg' %}" alt=""
+                        data-url="/">
+                    <img class="nav-link" data-url="https://www.linkedin.com/" src="{% static 'assets/icon/linked.svg' %}" alt=""
+                        data-url="/list_plot">
+                    <img class="nav-link" data-url="https://www.instagram.com/" src="{% static 'assets/icon/insta.svg' %}" alt=""
+                        data-url="/list_plot">
+                    </div>
+                </div>
+                <div class="con2">
+                    <h2>Quick links</h2>
+                    <h3 class="nav-link" data-url="/buy">Buy</h3>
+                    <h3 class="nav-link" data-url="/sell">Sell</h3>
+                    <h3 class="nav-link"
+                        data-url="/rent">
+                        Rent</h3>
+                    <h3 class="nav-link" data-url="/exclusive">Exclusive</h3>
+                </div>
+                <div class="con3">
+                    <h2>Pages</h2>
+                    <h3 class="nav-link" data-url="/about">About us</h3>
+                    <h3 class="nav-link" data-url="/contact">Contact us</h3>
+                    <h3 class="nav-link" data-url="/policy">Privacy Policy</h3>
+                    <h3 class="nav-link" data-url="/terms">Terms & Conditions</h3>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const hlinks = document.querySelectorAll(".nav-link, .btn-all, .logo, .nav-link-profile, .nav-plot, .nav-city");
+
+
+
+            hlinks.forEach(link => {
+                link.addEventListener("click", function () {
+                    const url = this.getAttribute('data-url');
+                    window.location.href = url
+
+                    this.classList.add('clicked');
+
+                    setTimeout(() => {
+                        this.classList.remove('clicked');
+                    }, 300);
+                })
+            });
+        });
+    </script>
+</body>
+
+</html>

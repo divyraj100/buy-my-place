@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'list_plot.css' %}">
+    <title>List Plot</title>
+</head>
+
+<body>
+    <div class="main">
+        <div class="con-header">
+            <div class="logo" data-url="/home">
+                <img src="{% static 'assets/logo.svg' %}" data-url="/home" alt="logo">
+            </div>
+            <div class="nav">
+                <h4 class="nav-link" data-url="/home">Home</h4>
+                <h4 class="nav-link" data-url="/buy">Buy</h4>
+                <h4 class="nav-link" data-url="/sell">Sell</h4>
+                <h4 class="nav-link" data-url="/rent">Rent</h4>
+                <h4 class="nav-link" data-url="/about">About us</h4>
+            </div>
+            <div class="cta-btn">
+                {% comment %} <div class="login-btn nav-link" data-url="/list_plot">List Plot</div> {% endcomment %}
+                <div class="profile nav-link-profile" data-url="/profile_page"><img
+                        src="{% static 'assets/icon/icon-profile.svg' %}" alt=""></div>
+            </div>
+        </div>
+
+        <div class="con-ill">
+            <img src="{% static '/assets/icon/list_ill.svg' %}" alt="">
+
+            <h3>Ready to showcase your property <br> to <span>potential buyers and renters?</span> <br>Fill out the
+                details below to list <br> your plot on <span>Buy My Place!</span></h3>
+        </div>
+
+        <div class="con-form">
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="con-img">
+                    <h3>Add photo of your property</h3>
+                    <div class="img-control"><input type="file" name="pimg" id="pimg" required></div>
+                </div>
+
+                <div class="con-add">
+                    <div class="fields">
+                        <div class="inp-field0">
+                            <div class="label">City</div>
+                            <div class="inp"><input required type="text" id="pcity" name="pcity" placeholder="Surat"></div>
+                        </div>
+
+                        <div class="inp-field1">
+                            <div class="label">State</div>
+                            <div class="inp"><input required type="text" id="pstate" name="pstate" placeholder="eg Gujarat"></div>
+                        </div>
+                    </div>
+
+                    <div class="fields">
+                        <div class="inp-field0">
+                            <div class="label">Address line</div>
+                            <div class="inp"><input required type="text" id="add_line" name="add_line"
+                                    placeholder="Lorem impsume road"></div>
+                        </div>
+
+                        <div class="inp-field1">
+                            <div class="label">Landmark</div>
+                            <div class="inp"><input required type="text" id="lmark" name="lmark" placeholder="Lorem mark"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="con-prod">
+                    <h3>Add Property details</h3>
+                    <div class="inp-field0" id="inp-field">
+                        <div class="label">Area of property</div>
+                        <div class="inp"><input required type="number" inputmode="numeric" id="area" name="area" placeholder="600 sqft"></div>
+                    </div>
+
+                    <div class="inp-field0" id="inp-field">
+                        <div class="label">Price of sqft</div>
+                        <div class="inp"><input required type="number"inputmode="numeric" id="sprice" name="sprice" placeholder="₹17000 ruppes">
+                        </div>
+                    </div>
+
+                    <div class="inp-field0" id="inp-field">
+                        <div class="label">Expected price</div>
+                        <div class="inp"><input required type="number" inputmode="numeric" id="price" name="price" placeholder="₹20000000 ruppes">
+                        </div>
+                    </div>
+
+                    <div class="check-rent">
+                        <input type="checkbox" name="is-rent" id="is-rent">
+                        <p>Available for rent</p>
+                    </div>
+                </div>
+
+                <div class="con-more">
+                    <h3>More about property</h3>
+                    <div class="sub-more">
+                        <div class="con-face">
+                            <div id="label">Plot Facing</div>
+                            <div class="check-list">
+                                <div class="con-check">
+                                    <input type="checkbox" name="is-south" id="check-south">
+                                    <p>South</p>
+                                </div>
+                                <div class="con-check">
+                                    <input type="checkbox" name="is-north" id="check-north">
+                                    <p>North</p>
+                                </div>
+                                <div class="con-check">
+                                    <input type="checkbox" name="is-east" id="check-east">
+                                    <p>East</p>
+                                </div>
+                                <div class="con-check">
+                                    <input type="checkbox" name="is-south-east" id="check-south-east">
+                                    <p>South East</p>
+                                </div>
+                                <div class="con-check">
+                                    <input type="checkbox" name="is-north-east" id="check-north-east">
+                                    <p>North East</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="con-open">
+                            <div id="label">No of open sides</div>
+                            <div class="check-list">
+                                <div class="con-check">
+                                    <input type="radio" name="oside" id="check-1" value="1">
+                                    <p>1</p>
+                                </div>
+                                <div class="con-check">
+                                    <input type="radio" name="oside" id="check-2" value="2">
+                                    <p>2</p>
+                                </div>
+                                <div class="con-check">
+                                    <input type="radio" name="oside" id="check-3" value="3">
+                                    <p>3</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="con-bound">
+                            <div id="label">Boundary wall</div>
+                            <div class="check-list">
+                                <div class="con-check">
+                                    <input type="radio" name="wall-radio" id="radio-yes" value="Yes">
+                                    <p>Yes</p>
+                                </div>
+                                <div class="con-check">
+                                    <input type="radio" name="wall-radio" id="radio-no" value="No">
+                                    <p>No</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="con-radio">
+                            <div id="label">Corner plot</div>
+                            <div class="check-list">
+                                <div class="con-check">
+                                    <input type="radio" name="corner-radio" id="radio-yes" value="Yes">
+                                    <p>Yes</p>
+                                </div>
+                                <div class="con-check">
+                                    <input type="radio" name="corner-radio" id="radio-no" value="No">
+                                    <p>No</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="con-radio">
+                            <div id="label">Gated property</div>
+                            <div class="check-list">
+                                <div class="con-check">
+                                    <input type="radio" name="gated-radio" id="radio-yes" value="Yes">
+                                    <p>Yes</p>
+                                </div>
+                                <div class="con-check">
+                                    <input type="radio" name="gated-radio" id="radio-no" value="No">
+                                    <p>No</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="con-contact">
+                    <h3>Your contact details</h3>
+                    <div class="con-add">
+                        <div class="fields">
+                            <div class="inp-field0">
+                                <div class="label">First Name</div>
+                                <div class="inp"><input required type="text" id="fname" name="fname" placeholder="Deed"></div>
+                            </div>
+
+                            <div class="inp-field1">
+                                <div class="label">Last Name</div>
+                                <div class="inp"><input required type="text" id="lname" name="lname" placeholder="Doop"></div>
+                            </div>
+                        </div>
+
+                        <div class="fields">
+                            <div class="inp-field0">
+                                <div class="label">Email</div>
+                                <div class="inp"><input required type="email" id="email" name="email"
+                                        placeholder="deed33@gmail.com" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"></div>
+                            </div>
+
+                            <div class="inp-field1">
+                                <div class="label">Phone</div>
+                                <div class="inp"><input required type="tel" pattern="[0-9]{10}" inputmode="numeric" maxlength="10" required id="phone" name="phone" placeholder="No.">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="con-msg">
+                    <h3>Write a aspecification of property</h3>
+                    <textarea name="smsg" id="smsg" cols="80" rows="20" placeholder="Type specification..."></textarea>
+                    <button type="submit" name="btn-plot" id="btn-plot">List Plot Now</button>
+                </div>
+            </form>
+        </div>
+        <div class="footer">
+            <div class="con-footer">
+                <div class="con1">
+
+                    <div class="sub-con1">
+                        <img class="f-logo nav-link " data-url="/home" src="{% static 'assets/f-logo.svg' %}" data-url="/"
+                            alt="">
+                        <h2>Explore, Invest <br> and Build</h2>
+                    </div>
+
+
+                    <div class="social">
+                        <img class="nav-link" data-url="https://twitter.com/" src="{% static 'assets/icon/tt.svg' %}" alt=""
+                        data-url="/">
+                    <img class="nav-link" data-url="https://www.youtube.com/" src="{% static 'assets/icon/yt.svg' %}" alt=""
+                        data-url="/">
+                    <img class="nav-link" data-url="https://www.linkedin.com/" src="{% static 'assets/icon/linked.svg' %}" alt=""
+                        data-url="/list_plot">
+                    <img class="nav-link" data-url="https://www.instagram.com/" src="{% static 'assets/icon/insta.svg' %}" alt=""
+                        data-url="/list_plot">
+                    </div>
+                </div>
+                <div class="con2">
+                    <h2>Quick links</h2>
+                    <h3 class="nav-link" data-url="/buy">Buy</h3>
+                    <h3 class="nav-link" data-url="/sell">Sell</h3>
+                    <h3 class="nav-link" data-url="/rent">Rent</h3>
+                    <h3 class="nav-link" data-url="/exclusive">Exclusive</h3>
+                </div>
+                <div class="con3">
+                    <h2>Pages</h2>
+                    <h3 class="nav-link" data-url="/about">About us</h3>
+                    <h3 class="nav-link" data-url="/contact">Contact us</h3>
+                    <h3 class="nav-link" data-url="/policy">Privacy Policy</h3>
+                    <h3 class="nav-link" data-url="/terms">Terms & Conditions</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const hlinks = document.querySelectorAll(".nav-link, .logo, .nav-link-profile");
+
+
+
+            hlinks.forEach(link => {
+                link.addEventListener("click", function () {
+                    const url = this.getAttribute('data-url');
+                    window.location.href = url
+
+                    this.classList.add('clicked');
+
+                    setTimeout(() => {
+                        this.classList.remove('clicked');
+                    }, 300);
+                })
+            });
+        });
+    </script>
+
+</body>
+
+</html>

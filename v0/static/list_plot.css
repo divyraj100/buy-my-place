@@ -1,0 +1,522 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    background-color: #E5DCCA;
+    font-family: 'Montserrat', sans-serif;
+    scroll-behavior: smooth;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* header con */
+
+.con-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* position: relative; */
+    /* left: 50%; */
+    /* transform: translateX(-50%); */
+    width: 90%;
+    height: 5vw;
+    margin: 1.5vw auto .1vw auto;
+    padding: 0 .2vw;
+    /* background-color: bisque; */
+    border-top: 1px solid #2F2E41;
+    border-bottom: 1px solid #2F2E41;
+
+}
+
+.logo {
+    display: flex;
+    font-size: 1vw;
+    cursor: pointer;
+}
+
+.nav {
+    display: flex;
+    margin: 0 auto;
+}
+
+.nav h4 {
+    margin-right: 88px;
+    font-weight: 600;
+    color: #2F2E41;
+    font-size: 1.2vw;
+    cursor: pointer;
+}
+
+.nav>h4:last-child {
+    margin-right: 0;
+}
+
+.nav-link:hover {
+    border-top: 1px solid #FF6884;
+    border-bottom: 1px solid #FF6884;
+    color: #FF6884;
+    transform: 2s ease-in;
+    margin-top: -0.1vw;
+}
+
+.cta-btn {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+.login-btn {
+    padding: .6vw 1vw;
+    border: 1px solid #FF6884;
+    border-radius: 12px;
+    color: #2F2E41;
+    margin-right: 1.2vw;
+
+}
+
+.login-btn:hover {
+    background-color: #FF6884;
+    color: #f2f2f2;
+}
+
+.profile {
+    height: auto;
+    width: auto;
+    border-radius: 50%;
+    align-content: center;
+    justify-content: center;
+}
+
+.profile img {
+    /* height: 34px;
+    width: 34px; */
+    height: 2.8vw;
+    width: 2.8vw;
+    margin: auto;
+    border-radius: 50%;
+    border: 1px solid #FF6884;
+}
+
+/* list plot form style */
+
+.con-ill{
+    display: flex;
+    justify-content: space-around;
+    padding: 0 8vw;
+    width: 100%;
+    height: 90vh;
+    align-items:center;
+}
+
+.con-ill h3{
+    font-size: 2.2vw;
+    font-weight: 600;
+    color: #2F2E41;
+    line-height: 2.8vw;
+}
+
+.con-ill span{
+    color: #FF6884;
+}
+
+.con-form{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.con-form form{
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+    height: 100%;
+    margin-bottom: 20vw;
+    border: 1px solid #FF6884;
+    background-color: #f6f6f6;
+    border-radius: 12px;
+}
+
+.con-img{
+    display: flex;
+    width: 100%;
+    height: auto;
+    margin: 1.3vw auto;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.con-img h3{
+    font-size: 1.4vw;
+    font-weight: 500;
+    margin-bottom: 1.1vw;
+    color: #FF6884;
+}
+
+.img-control{
+    width: 65%;
+    height: 15vw;
+    display: flex;
+    border: 1px solid #FF6884;
+    background-color: #f2f2f2;
+    border-radius: 12px;
+    align-content: center;
+    justify-content: center;
+}
+
+.img-control input{
+    margin-top:auto;
+    margin-right: auto;
+    margin-left: 15vw;
+    margin-bottom: auto;
+}
+
+.con-add{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1.3vw;
+}
+
+.fields{
+    display: flex;
+    width: 100%;
+    height: auto;
+    margin-bottom: 1.9vw;
+    margin-left:auto;
+    margin-top: 0;
+    margin-left: auto;
+    padding: 0 3.2vw;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.label{
+    margin-bottom: .8vw;
+}
+
+.inp-field0{
+    display: flex;
+    flex-direction: column;
+    width: 28vw;
+
+}
+
+.inp > input{
+    width: 100%;
+    border: 1px solid #FF6884;
+    border-radius: 8px;
+    padding: .7vw 1.6vw;
+    font-size: 1vw;
+}
+
+.inp-field1{
+    display: flex;
+    flex-direction: column;
+    width: 28vw;
+
+}
+
+.inp-field1 .inp > input{
+    width: 100%;
+}
+
+.con-prod{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    margin-top: 1.4vw;
+}
+
+.con-prod h3{
+    font-size: 1.4vw;
+    font-weight: 500;
+    margin-bottom: 1.8vw;
+    color: #FF6884;
+}
+
+#inp-field{
+    margin-bottom: 1.5vw;
+}
+
+.check-rent{
+    display: flex;
+}
+.check-rent input{
+    margin-right: .8vw;
+
+}
+
+.con-more{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 2.2vw 0;
+}
+
+.con-more h3{
+    font-size: 1.4vw;
+    font-weight: 500;
+    margin-bottom: 1.8vw;
+    color: #FF6884;
+}
+
+.sub-more{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.con-face{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.2vw;
+}
+
+.con-face #label{
+    margin-bottom: .8vw;
+    font-size: 1.3vw;
+}
+
+.check-list{
+    display: flex;
+}
+
+.con-check{
+    display: flex;
+    margin-right: .8vw;
+}
+
+.con-check input{
+    margin-right: .4vw;
+}
+
+.con-open{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5vw;
+}
+
+.con-open #label{
+    margin-bottom: .8vw;
+    font-size: 1.3vw;
+}
+
+.con-bound{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5vw;
+}
+
+.con-bound #label{
+    margin-bottom: .8vw;
+    font-size: 1.3vw;
+}
+
+.con-radio{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5vw;  
+}
+
+.con-radio #label{
+    margin-bottom: .8vw;
+    font-size: 1.3vw;
+}
+
+.con-contact{
+    display: flex;
+    flex-direction: column;
+}
+
+.con-contact h3{
+    font-size: 1.4vw;
+    font-weight: 500;
+    margin-bottom: 1.8vw;
+    color: #FF6884;
+    text-align: center;
+}
+
+.con-msg{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 1.8vw 0;
+    align-items: center;
+}
+
+.con-msg h3{
+    font-size: 1.4vw;
+    font-weight: 500;
+    margin-bottom: 1.8vw;
+    color: #FF6884;
+}
+
+.con-msg textarea{
+    margin-bottom: 2.5vw;
+    border-radius: 12px;
+    padding: 1.1vw 1vw;
+    background-color: #f2f2f2;
+    border: 1px solid #FF6884;
+}
+
+.con-msg button{
+    font-size: 1.2vw;
+    border: none;
+    background-color: #FF6884;
+    color: #f2f2f2;
+    padding: .7vw 3.5vw;
+    border-radius: 8px;
+}
+
+.con-msg > button:hover{
+    box-shadow: 3px 3px 3px #2F2E41;
+}
+
+input:focus{
+    outline: none;
+}
+
+
+/* footer */
+
+.footer {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 2vw;
+}
+
+.con-footer {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    width: 98%;
+    padding: 2vw .5vw;
+    border-radius: 12px;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #2F2E41;
+}
+
+.con1 {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.sub-con1 {
+    display: flex;
+    flex-direction: column;
+    margin-top: -1vw;
+    margin-bottom: 1.8vw;
+}
+
+.sub-con1 img {
+    width: 8vw;
+    height: 6vw;
+    cursor: pointer;
+}
+
+.sub-con1 img:hover {
+    border: none;
+}
+
+.sub-con1 h2 {
+    font-size: 2vw;
+    font-family: 500;
+    color: #F6F6F6;
+}
+
+.con2 {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.con2 h2 {
+    font-size: 1.7vw;
+    margin-bottom: 1.1vw;
+    color: #F6F6F6;
+}
+
+.con2 h3 {
+    font-size: 1.2vw;
+    color: #F6F6F6;
+    margin-bottom: 1vw;
+}
+
+.con2 h3:hover {
+    border-top: 1px solid #FF6884;
+    border-bottom: 1px solid #FF6884;
+    color: #FF6884;
+    transform: 2s ease-in;
+    cursor: pointer;
+}
+
+.con3 {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.con3 h2 {
+    font-size: 1.7vw;
+    margin-bottom: 1.1vw;
+    color: #F6F6F6;
+}
+
+.con3 h3 {
+    font-size: 1.2vw;
+    color: #F6F6F6;
+    margin-bottom: 1vw;
+}
+
+.con3 h3:hover {
+    border-top: 1px solid #FF6884;
+    border-bottom: 1px solid #FF6884;
+    color: #FF6884;
+    transform: 2s ease-in;
+    cursor: pointer;
+}
+
+.social {
+    display: flex;
+    cursor: pointer;
+}
+
+.social img {
+    margin-right: 1.6vw;
+    height: 24px;
+    width: 24px;
+}
+
+.social img:last-child {
+    margin-right: 0;
+}

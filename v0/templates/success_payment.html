@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'success_payment.css' %}">
+    <title>Payment Success</title>
+</head>
+
+<body>
+    <div class="main">
+        <div class="con">
+            <div class="img">
+                <img src="{% static 'assets/suc_pay_ill.svg' %}" alt="">
+            </div>
+            <div class="sub">
+                <h3>Payment has been successful !!!</h3>
+                <h3 id="cong">Congratulations You are now premium user <br> Your plot selling chances are increased by
+                    <span>45%</span></h3>
+                <div class="btn" data-url="{%url 'Home_page'%}">Return to home</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const hlinks = document.querySelectorAll(".nav-link, .logo, .btn, .nav-link-profile, .nav-plot, .nav-city, .nav-link-logo, .nav-reset, .nav-logout");
+
+
+
+            hlinks.forEach(link => {
+                link.addEventListener("click", function () {
+                    const url = this.getAttribute('data-url');
+                    window.location.href = url
+
+                    this.classList.add('clicked');
+
+                    setTimeout(() => {
+                        this.classList.remove('clicked');
+                    }, 300);
+                })
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>

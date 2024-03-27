@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'admin_page.css' %}">
+    <title>Admin page</title>
+</head>
+
+<body>
+    <div class="main">
+        <div class="side-menu">
+            <div class="logo" data-url="/home">
+                <div class="logo" data-url="/home">
+                    <img src="{% static 'assets/logo.svg' %} " data-url="/home" alt="logo">
+                </div>
+            </div>
+
+            <div class="tabs-menu">
+                <div class="tab1">
+                    <h3>List Plot</h3>
+                </div>
+                <div class="tab2">
+                    <h3>Users Records</h3>
+                </div>
+                <div class="tab3">
+                    <h3>Plots Records</h3>
+                </div>
+                <div class="tab4">
+                    <h3>Contact Records</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="con-menu">
+            <div class="con-plot active">
+                <div class="con-form">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="con-img">
+                            <h3>Add photo of your property</h3>
+                            <div class="img-control"><input type="file" name="pimg" id="pimg" ></div>
+                        </div>
+
+                        <div class="inp-field0" id="inp-id">
+                            <div class="label">Plot ID</div>
+                            <div class="inp"><input type="number" id="pid" name="pid" placeholder="Enter Plot ID" ></div>
+                        </div>
+
+                        <div class="con-add">
+                            <div class="fields">
+                                <div class="inp-field0">
+                                    <div class="label">City</div>
+                                    <div class="inp"><input  type="text" id="pcity" name="pcity"
+                                            placeholder="Surat"></div>
+                                </div>
+
+                                <div class="inp-field1">
+                                    <div class="label">State</div>
+                                    <div class="inp"><input  type="text" id="pstate" name="pstate"
+                                            placeholder="eg Gujarat"></div>
+                                </div>
+                            </div>
+
+                            <div class="fields">
+                                <div class="inp-field0">
+                                    <div class="label">Address line</div>
+                                    <div class="inp"><input  type="text" id="add_line" name="add_line"
+                                            placeholder="Lorem impsume road"></div>
+                                </div>
+
+                                <div class="inp-field1">
+                                    <div class="label">Landmark</div>
+                                    <div class="inp"><input type="text" id="lmark" name="lmark"
+                                            placeholder="Lorem mark"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="con-prod">
+                            <h3>Add Property details</h3>
+                            <div class="inp-field0" id="inp-field">
+                                <div class="label">Area of property</div>
+                                <div class="inp"><input type="number" inputmode="numeric" id="area" name="area"
+                                        placeholder="600 sqft"></div>
+                            </div>
+
+                            <div class="inp-field0" id="inp-field">
+                                <div class="label">Price of sqft</div>
+                                <div class="inp"><input  type="number" inputmode="numeric" id="sprice"
+                                        name="sprice" placeholder="₹17000 ruppes">
+                                </div>
+                            </div>
+
+                            <div class="inp-field0" id="inp-field">
+                                <div class="label">Expected price</div>
+                                <div class="inp"><input  type="number" inputmode="numeric" id="price"
+                                        name="price" placeholder="₹20000000 ruppes">
+                                </div>
+                            </div>
+
+                            <div class="check-rent">
+                                <input type="checkbox" name="is-rent" id="is-rent">
+                                <p>Available for rent</p>
+                            </div>
+                        </div>
+
+                        <div class="con-more">
+                            <h3>More about property</h3>
+                            <div class="sub-more">
+                                <div class="con-face">
+                                    <div id="label">Plot Facing</div>
+                                    <div class="check-list">
+                                        <div class="con-check">
+                                            <input type="checkbox" name="is-south" id="check-south">
+                                            <p>South</p>
+                                        </div>
+                                        <div class="con-check">
+                                            <input type="checkbox" name="is-north" id="check-north">
+                                            <p>North</p>
+                                        </div>
+                                        <div class="con-check">
+                                            <input type="checkbox" name="is-east" id="check-east">
+                                            <p>East</p>
+                                        </div>
+                                        <div class="con-check">
+                                            <input type="checkbox" name="is-south-east" id="check-south-east">
+                                            <p>South East</p>
+                                        </div>
+                                        <div class="con-check">
+                                            <input type="checkbox" name="is-north-east" id="check-north-east">
+                                            <p>North East</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="con-open">
+                                    <div id="label">No of open sides</div>
+                                    <div class="check-list">
+                                        <div class="con-check">
+                                            <input type="radio" name="oside" id="check-1" value="1">
+                                            <p>1</p>
+                                        </div>
+                                        <div class="con-check">
+                                            <input type="radio" name="oside" id="check-2" value="2">
+                                            <p>2</p>
+                                        </div>
+                                        <div class="con-check">
+                                            <input type="radio" name="oside" id="check-3" value="3">
+                                            <p>3</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="con-bound">
+                                    <div id="label">Boundary wall</div>
+                                    <div class="check-list">
+                                        <div class="con-check">
+                                            <input type="radio" name="wall-radio" id="radio-yes" value="Yes">
+                                            <p>Yes</p>
+                                        </div>
+                                        <div class="con-check">
+                                            <input type="radio" name="wall-radio" id="radio-no" value="No">
+                                            <p>No</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="con-radio">
+                                    <div id="label">Corner plot</div>
+                                    <div class="check-list">
+                                        <div class="con-check">
+                                            <input type="radio" name="corner-radio" id="radio-yes" value="Yes">
+                                            <p>Yes</p>
+                                        </div>
+                                        <div class="con-check">
+                                            <input type="radio" name="corner-radio" id="radio-no" value="No">
+                                            <p>No</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="con-radio">
+                                    <div id="label">Gated property</div>
+                                    <div class="check-list">
+                                        <div class="con-check">
+                                            <input type="radio" name="gated-radio" id="radio-yes" value="Yes">
+                                            <p>Yes</p>
+                                        </div>
+                                        <div class="con-check">
+                                            <input type="radio" name="gated-radio" id="radio-no" value="No">
+                                            <p>No</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="con-contact">
+                            <h3>Your contact details</h3>
+                            <div class="con-add">
+                                <div class="fields">
+                                    <div class="inp-field0">
+                                        <div class="label">First Name</div>
+                                        <div class="inp"><input  type="text" id="fname" name="fname"
+                                                placeholder="Deed"></div>
+                                    </div>
+
+                                    <div class="inp-field1">
+                                        <div class="label">Last Name</div>
+                                        <div class="inp"><input  type="text" id="lname" name="lname"
+                                                placeholder="Doop"></div>
+                                    </div>
+                                </div>
+
+                                <div class="fields">
+                                    <div class="inp-field0">
+                                        <div class="label">Email</div>
+                                        <div class="inp"><input  type="email" id="email" name="email"
+                                                placeholder="deed33@gmail.com"
+                                                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"></div>
+                                    </div>
+
+                                    <div class="inp-field1">
+                                        <div class="label">Phone</div>
+                                        <div class="inp"><input  type="tel" pattern="[0-9]{10}"
+                                                inputmode="numeric" maxlength="10" required id="phone" name="phone"
+                                                placeholder="No.">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="con-msg">
+                            <h3>Write a aspecification of property</h3>
+                            <textarea name="smsg" id="smsg" cols="80" rows="20"
+                                placeholder="Type specification..."></textarea>
+                            <!-- <button class="btn-plot" type="submit" name="btn-plot" id="btn-plot">List Plot Now</button> -->
+                        </div>
+
+                        <div class="buttons">
+                            <button class="btn-plot" type="submit" name="btn-plot" id="btn-plot">List Plot</button>
+                            <button class="btn-plot" type="submit" name="btn-update" id="btn-update">Update
+                                Plot</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="con-users">
+                <h2>Registered Users</h2>
+                <table border="1">
+                    <thead>
+                        <th>ID</th>
+                        <th>Admin</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Subscribed</th>
+                        <th>Sub_Start</th>
+                        <th>Sub_End</th>
+                        <th id="ret">
+                            <form action="{% url 'del_user' %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" name="reset">Reset Sub</button>
+                            </form>
+                        </th>
+
+                    </thead>
+
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <form action="{% url 'del_user' %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="uid" value="{{ user.id }}">
+                                <td>{{ user.id }}</td>
+                                <td id="">
+                                    <input type="checkbox" name="is-admin" {% if user.is_admin%}checked{%endif %}>
+                                    {% if user.is_admin %}
+                                    <h5>True</h5>
+                                    {% else %}
+                                    <h5>False</h5>
+                                    {% endif %}
+                                </td>
+                                <td><input type="text" id="inn" name="uname" value="{{ user.name }}"> </td>
+                                <td><input type="text" id="inn" name="umail" value="{{ user.email }}"></td>
+                                <td><input type="text" id="inn" name="uphone" value="{{ user.phone }}"></td>
+                                <td id="">
+                                    <input type="checkbox" name="is-subscribed" {% if user.is_subscribed%}checked{%endif %}>
+                                    {% if user.is_subscribed %}
+                                    <h5>True</h5>
+                                    {% else %}
+                                    <h5>False</h5>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    
+                                    {% if user.is_subscribed %}
+                                    <input type="date" name="start" value="{{ user.sub_start|date:'Y-m-d' }}">                                    <!-- <h5>{{user.sub_start}}</h5> -->
+                                        <!-- <h5>{{user.sub_start}}</h5> -->
+                                    {% else %}
+                                        <h5>-</h5>
+                                    {% endif %}
+                                        
+                                </td>
+                                <td>
+                                    
+                                    {% if user.is_subscribed %}
+                                    <input type="date" name="end" value="{{ user.sub_end|date:'Y-m-d' }}">                                    <!-- <h5>{{user.sub_start}}</h5> -->
+                                    {% else %}
+                                        <h5>-</h5>
+                                    {% endif %}
+                                        
+                                </td>
+                                <td>
+                                    <button type="submit" name="btn-update">Update</button>
+                                    <button type="submit" name="btn-del">Delete</button>
+                                </td>
+                            </form>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div class="con-plots">
+                <h2>Listed Plots</h2>
+                <table border="1">
+                    <thead>
+                        <th>ID</th>
+                        <th>Owner ID</th>
+                        <th>Is_Sub_User</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Pcity</th>
+                        <th>Pstate</th>
+                        <th>Addrees_line</th>
+                        <th>Land Mark</th>
+                        <th>Area sqft</th>
+                        <th>Sprice</th>
+                        <th>Price</th>
+                        <th>Rent</th>
+                        <th>South</th>
+                        <th>North</th>
+                        <th>East</th>
+                        <th>North-East</th>
+                        <th>South-East</th>
+                        <th>Boundary</th>
+                        <th>Corner</th>
+                        <th>Gated</th>
+                        <th>Open Sides</th>
+                    </thead>
+                    <tbody>
+                        {% for plot in aplot%}
+                        <tr>
+                            <form action="{% url 'del_plot' %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="pid" id="pid" value="{{plot.id}}">
+                                <td>{{plot.id}}</td>
+                                <td>{{plot.owner_id}}</td>
+                                <td id="">
+                                    <input type="checkbox" name="is_sub_user" {% if plot.is_sub_user%}checked{% endif%}>
+
+                                    {% if plot.is_sub_user %}
+                                    <h4>True</h4>
+                                    {% elif not plot.is_sub_user %}
+                                    <h4>False</h4>
+                                    {% endif %}
+
+                                </td>
+                                <td>{{plot.fname}}</td>
+                                <td>{{plot.lname}}</td>
+                                <td>{{plot.email}}</td>
+                                <td>{{plot.phone}}</td>
+                                <td>{{plot.pcity}}</td>
+                                <td>{{plot.pstate}}</td>
+                                <td>{{plot.paddress_line}}</td>
+                                <td>{{plot.plandmark}}</td>
+                                <td>{{plot.area}}</td>
+                                <td>{{plot.sprice}}</td>
+                                <td>{{plot.price}}</td>
+                                <td id="sub">
+                                    <input type="checkbox" name="is-rent" {% if plot.is_rent %}checked{% endif %}>
+                                    {% if plot.is_rent %}
+                                    <h4>True</h4>
+                                    {% elif not plot.is_rent %}
+                                    <h4>False</h4>
+                                    {% endif %}
+                                </td>
+                                <td id="">
+                                    <input type="checkbox" name="is-south" {% if plot.is_south %}checked{% endif %}>
+                                    {% if plot.is_south %}
+                                    <h4>True</h4>
+                                    {% elif not plot.is_south %}
+                                    <h4>False</h4>
+                                    {% endif %}
+                                </td>
+                                <td id="">
+                                    <input type="checkbox" name="is-north" {% if plot.is_north %}checked{% endif %}>
+                                    {% if plot.is_north %}
+                                    <h4>True</h4>
+                                    {% elif not plot.is_north %}
+                                    <h4>False</h4>
+                                    {% endif %}
+                                </td>
+                                <td id="">
+                                    <input type="checkbox" name="is-east" {% if plot.is_east %}checked{% endif %}>
+                                    {% if plot.is_east %}
+                                    <h4>True</h4>
+                                    {% elif not plot.is_east %}
+                                    <h4>False</h4>
+                                    {% endif %}
+                                </td>
+                                <td id="">
+                                    <input type="checkbox" name="is-north-east" {% if plot.is_north_east%}checked{%endif %}>
+                                    {% if plot.is_north_east %}
+                                    <h4>True</h4>
+                                    {% elif not plot.is_north_east %}
+                                    <h4>False</h4>
+                                    {% endif %}
+                                </td>
+                                <td id="">
+                                    <input type="checkbox" name="is-south-east" {% if plot.is_south_east%}checked{%endif %}>
+                                    {% if plot.is_south_east %}
+                                    <h4>True</h4>
+                                    {% elif not plot.is_south_east %}
+                                    <h4>False</h4>
+                                    {% endif %}
+                                </td>
+                                <td id="">
+                                    <input type="checkbox" name="is-boundary" {% if plot.has_boundary_wall%}checked{%endif %}>
+                                    {% if plot.has_boundary_wall %}
+                                    <h4>True</h4>
+                                    {% elif not has_boundary_wall %}
+                                    <h4>False</h4>
+                                    {% endif %}
+                                </td>
+                                <td id="">
+                                    <input type="checkbox" name="is-corner" {% if plot.is_corner_plot %}checked{% endif%}>
+                                    {% if plot.is_corner_plot %}
+                                    <h4>True</h4>
+                                    {% elif not is_corner_plot %}
+                                    <h4>False</h4>
+                                    {% endif %}
+                                </td>
+                                <td id="">
+                                    <input type="checkbox" name="is-gated" {% if plot.is_gated_property %}checked{%endif%}>
+                                    {% if plot.is_gated_property %}
+                                    <h4>True</h4>
+                                    {% elif not is_gated_property %}
+                                    <h4>False</h4>
+                                    {% endif %}
+                                </td>
+                                <td id="">
+                                    {% if plot.is_1 %}
+                                    <h4>1</h4>
+                                    {% elif plot.is_2 %}
+                                    <h4>2</h4>
+                                    {% elif plot.is_3 %}
+                                    <h4>3</h4>
+                                    {% endif %}
+                                </td>
+                                <td id="btt">
+                                    <button type="submit" name="btn-update-p">Update</button>
+                                    <button type="submit" name="btn-del-p">Delete</button>
+                                </td>
+
+
+                            </form>
+
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="con-contactss">
+                <h3>User Contacts</h3>
+                <table border="1">
+                    <thead>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Message</th>
+                    </thead>
+                    <tbody>
+                        {% for c in cc  %}
+                          <tr>
+                            <td>{{c.name}}</td>
+                            <td>{{c.email}}</td>
+                            <td>{{c.phone}}</td>
+                            <td>{{c.message}}</td>
+                          </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabs = document.querySelectorAll('.tabs-menu div');
+            const tabContents = document.querySelectorAll('.con-menu > div');
+
+            tabs.forEach((tab, index) => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+
+                    tab.classList.add('active');
+                    tabContents[index].classList.add('active');
+                });
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const hlinks = document.querySelectorAll(".nav-link, .logo, .nav-link-profile, .nav-plot, .nav-city, .nav-link-logo, .nav-reset, .nav-logout, .back-home");
+
+
+            hlinks.forEach(link => {
+                link.addEventListener("click", function () {
+                    const url = this.getAttribute('data-url');
+                    console.log(url);
+                    window.location.href = url
+
+                    this.classList.add('clicked');
+
+                    setTimeout(() => {
+                        this.classList.remove('clicked');
+                    }, 300);
+                })
+            });
+
+        });
+
+    </script>
+</body>
+
+</html>
