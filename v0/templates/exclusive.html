@@ -26,11 +26,17 @@
                     <h4 class="nav-link" data-url="/about">About us</h4> {% endcomment %}
                 </div>
                 <div class="cta-btn">
-                    <div class="login-btn nav-link" data-url="{% url 'list_plot'%}">List Plot</div>
-                    <div class="profile nav-link-profile" data-url="{% url 'profile_page' %}">
+                    {% comment %} <div class="login-btn nav-link" data-url="/list_plot">List Plot</div> {% endcomment %}
+                    {% comment %} <div class="profile nav-link-profile" data-url="{% url 'profile_page' %}">
                         <img data-url="{% url 'profile_page' %}" class="nav-link-profile"
                             src="{% static 'assets/icon/icon-profile.svg' %}" alt="">
-                    </div>
+                    </div> {% endcomment %}
+                </div>
+               
+                <div class="login-btn nav-link" data-url="/list_plot">List Plot</div>
+                <div class="profile nav-link-profile" data-url="{% url 'profile_page' %}">
+                    <img data-url="{% url 'profile_page' %}" class="nav-link-profile"
+                        src="{% static 'assets/icon/icon-profile.svg' %}" alt="">
                 </div>
             </div>
 
@@ -97,7 +103,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const hlinks = document.querySelectorAll(".nav-link, .cta-btn, .logo, .nav-link-profile, .nav-plot, .nav-city");
+            const hlinks = document.querySelectorAll(".nav-link, .cta-btn, .logo, .nav-link-profile, .nav-plot, .nav-city, .btn-lst, .btn-prof");
 
 
 

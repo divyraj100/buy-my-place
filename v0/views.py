@@ -2,8 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password, check_password
 from django.urls import reverse
-from django.db.models import Case, When, Value, IntegerField
-from django.http import HttpResponseRedirect
+from django.core.exceptions import ObjectDoesNotExist
 from .models import *
 import os
 import random
@@ -22,9 +21,9 @@ def generate_otp():
     return str(random.randint(100000, 999999))
 
 def verify_otp_sms(phone_number, entered_otp):
-    account_sid = "ACa976f99952fbbb1edb4fbac7488c25b8"
-    auth_token = "08a880cdfcc2deaca1c2fc927b2a7c9b"
-    verify_sid = "VA271c6a27f997618790efa8b7a5082852"
+    account_sid = "ACaf8f02ccd51e63331a684db76cd27755"
+    auth_token = "f6d8c19cd83ef3415dbe6012d8de3086"
+    verify_sid = "VA10ca81cd26491da2460ccd1d8f059b92"
 
     client = Client(account_sid, auth_token)
 
@@ -40,9 +39,9 @@ def verify_otp_sms(phone_number, entered_otp):
 
 
 def send_otp_sms(phone_number):
-    account_sid = "ACa976f99952fbbb1edb4fbac7488c25b8"
-    auth_token = "08a880cdfcc2deaca1c2fc927b2a7c9b"
-    verify_sid = "VA271c6a27f997618790efa8b7a5082852"
+    account_sid = "ACaf8f02ccd51e63331a684db76cd27755"
+    auth_token = "f6d8c19cd83ef3415dbe6012d8de3086"
+    verify_sid = "VA10ca81cd26491da2460ccd1d8f059b92"
     
     client = Client(account_sid, auth_token)
 
@@ -144,24 +143,31 @@ def Home_page(request):
 
 
 def forget(request):
+    cus_msg=''
 
     if request.method == "POST":
         email = request.POST.get('email')
-        request.session['forget_mail'] = email
-        mail = request.session.get('forget_mail')
+        request.session['forget_mail'] = email  # Storing email in session
+        mail = request.session.get('forget_mail')  # Retrieving email from session
 
-        print(mail)
+        try:
+            user = User.objects.get(email=email)
 
-        if email:
-            otp = generate_otp()
-            request.session['femail_otp'] = otp
+            if email and user:
+                otp = generate_otp()
+                request.session['femail_otp'] = otp  # Storing OTP in session
 
-            with transaction.atomic():
-                # Send OTPs to user's email and phone
-                send_otp_email(email, otp)
-            return redirect('otp')
+                with transaction.atomic():
+                    # Send OTP to user's email
+                    send_otp_email(email, otp)
 
-    return render(request, "forget.html")
+                return redirect('otp')  # Redirect to OTP verification page
+            else:
+                cus_msg = "Email is not registered"
+        except ObjectDoesNotExist:
+            cus_msg = "Email is not registered"
+
+    return render(request, "forget.html",{'cus_msg':cus_msg})
     
 def for_reset(request):
 
@@ -232,18 +238,7 @@ def otp(request):
 
         else:
             cus_msg = "~ Invalid OTP or User"
-    
 
-        # if entered_otp == stored_email_otp or entered_otp == stored_phone_otp:
-         
-        #     del request.session['email_otp']
-        #     del request.session['phone_otp']
-        #     del request.session['registration_email']
-
-        #     messages.success(request, 'OTP verified. You are now logged in.')
-        #     return redirect('Login')  # Adjust this to your actual login URL
-        # else:
-        #     cus_msg = "~ Invalid OTP or User"
 
     return render(request, "otp.html", {'email': email, 'cus_msg': cus_msg})
 
@@ -583,31 +578,56 @@ def imadmin(request):
                 plot = Plot.objects.get(id=pid)
 
                 # Update record fields
-                plot.pimg = pimg
-                plot.pcity=pcity
-                plot.pstate=pstate
-                plot.paddress_line=paddress_line
-                plot.plandmark=plandmark
-                plot.area = int(request.POST.get('area'))
-                plot.sprice=sprice
-                plot.price=price
-                plot.is_rent=is_rent
-                plot.is_south=is_south
-                plot.is_north=is_north
-                plot.is_east=is_east
-                plot.is_south_east=is_south_east
-                plot.is_north_east=is_north_east
-                plot.is_1=is_1
-                plot.is_2=is_2
-                plot.is_3=is_3
-                plot.has_boundary_wall=has_boundary_wall
-                plot.is_corner_plot=is_corner_plot
-                plot.is_gated_property=is_gated_property
-                plot.fname=fname
-                plot.lname=lname
-                plot.email=email
-                plot.phone=phone
-                plot.smsg=smsg
+                if pimg is not None:
+                    plot.pimg = pimg
+                if pcity is not None:
+                    plot.pcity = pcity
+                if pstate is not None:
+                    plot.pstate = pstate
+                if paddress_line is not None:
+                    plot.paddress_line = paddress_line
+                if plandmark is not None:
+                    plot.plandmark = plandmark
+                if area is not None:
+                    plot.area = int(area)
+                if sprice is not None:
+                    plot.sprice = sprice
+                if price is not None:
+                    plot.price = price
+                if is_rent is not None:
+                    plot.is_rent = is_rent
+                if is_south is not None:
+                    plot.is_south = is_south
+                if is_north is not None:
+                    plot.is_north = is_north
+                if is_east is not None:
+                    plot.is_east = is_east
+                if is_south_east is not None:
+                    plot.is_south_east = is_south_east
+                if is_north_east is not None:
+                    plot.is_north_east = is_north_east
+                if is_1 is not None:
+                    plot.is_1 = is_1
+                if is_2 is not None:
+                    plot.is_2 = is_2
+                if is_3 is not None:
+                    plot.is_3 = is_3
+                if has_boundary_wall is not None:
+                    plot.has_boundary_wall = has_boundary_wall
+                if is_corner_plot is not None:
+                    plot.is_corner_plot = is_corner_plot
+                if is_gated_property is not None:
+                    plot.is_gated_property = is_gated_property
+                if fname is not None:
+                    plot.fname = fname
+                if lname is not None:
+                    plot.lname = lname
+                if email is not None:
+                    plot.email = email
+                if phone is not None:
+                    plot.phone = phone
+                if smsg is not None:
+                    plot.smsg = smsg
 
                 plot.save()
 
@@ -620,7 +640,6 @@ def imadmin(request):
        
 
     return render(request, "admin_page.html", {'users': users, 'aplot': aplot, 'cc': cc})
-
 
 def del_user(request):
 
@@ -657,13 +676,15 @@ def del_user(request):
                     user.is_subscribed = False
                     user.save()
             if user.sub_end:
-    # Convert sub_end string to datetime.date object
-                sub_end_date = datetime.strptime(user.sub_end, '%Y-%m-%d').date()
-                if sub_end_date < timezone.now().date():
-                    user.is_subscribed = False
+                try:
+                    sub_end_date = datetime.strptime(user.sub_end, '%Y-%m-%d').date()
+                    if sub_end_date < timezone.now().date():
+                        user.is_subscribed = False
+                except ValueError:
+                    # Handle the case where user.sub_end is not in the expected format
+                    pass
             elif not user.sub_start:
                     user.sub_start = timezone.now().date()
-                    # Calculate subscription end date (e.g., 30 days from start date)
                     user.sub_end = timezone.now().date() + timedelta(days=30)
             user.phone = uphone
             user.save()
@@ -674,6 +695,22 @@ def del_user(request):
      
     call_command('update_subscriptions')
     return  redirect(reverse('imadmin'))
+
+def udel(request):
+    
+    if request.method == "POST":
+        
+        pid = request.POST.get('bid')
+        btn_del = request.POST.get('btn-del')
+        user = User.objects.get(id=pid)
+        
+        if btn_del is not None:
+       
+            user.delete()
+            
+    return  redirect(reverse('imadmin'))
+      
+
 
 def del_plot(request):
     if request.method == "POST":
@@ -798,45 +835,3 @@ def reset(request):
 
     return render(request, "reset.html")
 
-# @superuser_required
-# def EditPrimeRole(request):
-#     profiles = Profile.objects.all()
-    
-#     if request.method == 'POST':
-#         user_id = request.POST.get('user_id')
-        
-#         if not user_id:
-#             error_message = "User ID is empty."
-#             return render(request, 'error_page.html', {'error_message': error_message})
-        
-#         try:
-#             user = User.objects.get(id=user_id)
-#             profile = user.profile
-#             profile.is_prime_user = not profile.is_prime_user
-            
-#             if profile.is_prime_user:
-#                 # Set subscription start date to current date
-#                 profile.subscription_start_date = timezone.now().date()
-#                 # Calculate subscription expiry date as 30 days from start date
-#                 profile.subscription_expiry_date = profile.subscription_start_date + timedelta(days=30)
-#             else:
-#                 # Reset subscription dates if user is not a prime user
-#                 profile.subscription_start_date = None
-#                 profile.subscription_expiry_date = None
-            
-#             profile.save()
-#             return redirect(request.path)
-#         except User.DoesNotExist:
-#             error_message = "User with the specified ID does not exist."
-#             return render(request, 'error_page.html', {'error_message': error_message})
-    
-#     else:
-#         profiles = Profile.objects.all()
-#         for profile in profiles:
-#             profile.subscription_start_date = profile.subscription_start_date.strftime('%Y-%m-%d') if profile.subscription_start_date else ''
-#             profile.subscription_expiry_date = profile.subscription_expiry_date.strftime('%Y-%m-%d') if profile.subscription_expiry_date else ''
-        
-#         form = PrimeUserForm()
-#         return render(request, 'become_prime_user.html', {'profiles': profiles, 'form': form})
-#-----------------------------------------------
-# prime feature without 30 days

@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date
 
 # Create your models here.
 
@@ -26,8 +27,10 @@ class User(models.Model):
     phone = models.BigIntegerField(validators=[MinLengthValidator(limit_value=15)])
     password = models.CharField(max_length=120)
     is_subscribed = models.BooleanField(default=False)
-    sub_start = models.DateField()  # Example format: YYYY-MM-DD
-    sub_end = models.DateField()  
+    sub_start = models.DateField(default=date.today)  # Example format: YYYY-MM-DD
+    sub_end = models.DateField(default=date.today) 
+    # sub_start = models.DateField()  # Example format: YYYY-MM-DD
+    # sub_end = models.DateField()  
     
     def __str__(self):
         # Format sub_start and sub_end dates as 'dd-mm-yyyy'

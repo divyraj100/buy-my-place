@@ -47,6 +47,7 @@ urlpatterns = [
     path('reset/', reset, name = "reset"),
     path('otp/', otp, name = "otp"),
     path('forget/', forget, name = "forget"),
+    path('udel/', udel, name = "udel"),
     path('for_reset/', for_reset, name="for_reset"),
     # path('otp/', otp, name="otp"),
     path('logout/', custom_logout, name='custom_logout'),

@@ -264,7 +264,7 @@
                         <th>Sub_Start</th>
                         <th>Sub_End</th>
                         <th id="ret">
-                            <form action="{% url 'del_user' %}" method="post">
+                            <form action="{% url 'del_user' %}" method="POST">
                                 {% csrf_token %}
                                 <button type="submit" name="reset">Reset Sub</button>
                             </form>
@@ -275,7 +275,7 @@
                     <tbody>
                         {% for user in users %}
                         <tr>
-                            <form action="{% url 'del_user' %}" method="post">
+                            <form action="{% url 'del_user' %}" method="POST">
                                 {% csrf_token %}
                                 <input type="hidden" name="uid" value="{{ user.id }}">
                                 <td>{{ user.id }}</td>
@@ -319,9 +319,16 @@
                                 </td>
                                 <td>
                                     <button type="submit" name="btn-update">Update</button>
-                                    <button type="submit" name="btn-del">Delete</button>
+                                    {% comment %} <button type="submit" name="btn-del">Delete</button> {% endcomment %}
                                 </td>
                             </form>
+                                <td>
+                                    <form action="{% url 'udel' %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="bid" value="{{ user.id }}">
+                                        <button type="submit" name="btn-del">Delete</button>
+                                    </form>
+                                </td>
                         </tr>
                         {% endfor %}
                     </tbody>
