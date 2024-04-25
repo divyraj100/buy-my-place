@@ -382,6 +382,7 @@ input[type="number"]::-webkit-outer-spin-button {
     margin-bottom: 2.5vw;
     border-radius: 12px;
     padding: 1.1vw 1vw;
+    resize: none;
     background-color: #f2f2f2;
     border: 1px solid #FF6884;
 }
@@ -400,6 +401,10 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 input:focus{
+    outline: none;
+}
+
+textarea:focus{
     outline: none;
 }
 

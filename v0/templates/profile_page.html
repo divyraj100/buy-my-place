@@ -34,7 +34,7 @@
             <div class="con-tabs">
                 <div class="img">
                     <img src="{% static 'assets/icon/avatar.svg' %}" alt="">
-                    <h3>Deed Doop 
+                    <h3>{{user.name}}<h3> 
                     {% if user.is_subscribed %}
                        <img src="{% static 'assets/sub.svg' %}" alt=""> 
                     {% endif %}
@@ -126,7 +126,7 @@
 
                 <div class="con-msg">
                     
-                    {% if message %}
+                    {% if user_messages %}
                         {% for message in user_messages %}
                         <div class="sub">
                             <div class="nc">

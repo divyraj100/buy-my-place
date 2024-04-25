@@ -509,7 +509,10 @@ def imadmin(request):
         pstate = request.POST.get('pstate')
         paddress_line = request.POST.get('add_line')
         plandmark = request.POST.get('lmark')
-        area = int(request.POST.get('area'))
+        area_str = request.POST.get('area')
+        area = int(area_str) if area_str.isdigit() else None
+
+        # area = int(request.POST.get('area'))
         sprice = request.POST.get('sprice')
         price = request.POST.get('price')
         is_rent = request.POST.get('is-rent') == 'on'
@@ -577,22 +580,22 @@ def imadmin(request):
             try:
                 plot = Plot.objects.get(id=pid)
 
-                # Update record fields
-                if pimg is not None:
+                # Update record fields if corresponding input fields are not empty
+                if pimg:
                     plot.pimg = pimg
-                if pcity is not None:
+                if pcity:
                     plot.pcity = pcity
-                if pstate is not None:
+                if pstate:
                     plot.pstate = pstate
-                if paddress_line is not None:
+                if paddress_line:
                     plot.paddress_line = paddress_line
-                if plandmark is not None:
+                if plandmark:
                     plot.plandmark = plandmark
-                if area is not None:
+                if area:
                     plot.area = int(area)
-                if sprice is not None:
+                if sprice:
                     plot.sprice = sprice
-                if price is not None:
+                if price:
                     plot.price = price
                 if is_rent is not None:
                     plot.is_rent = is_rent
@@ -618,18 +621,19 @@ def imadmin(request):
                     plot.is_corner_plot = is_corner_plot
                 if is_gated_property is not None:
                     plot.is_gated_property = is_gated_property
-                if fname is not None:
+                if fname:
                     plot.fname = fname
-                if lname is not None:
+                if lname:
                     plot.lname = lname
-                if email is not None:
+                if email:
                     plot.email = email
-                if phone is not None:
+                if phone:
                     plot.phone = phone
-                if smsg is not None:
+                if smsg:
                     plot.smsg = smsg
 
                 plot.save()
+
 
                 return redirect(reverse('imadmin'))
 
@@ -654,13 +658,11 @@ def del_user(request):
 
         btn_update = request.POST.get('btn-update')
         btn_re = request.POST.get('reset')
-        btn_del = request.POST.get('btn-del')
+        
         try:
             user = User.objects.get(id=uid)
 
-            if btn_del is not None:
-                user.delete()
-            elif btn_update is not None:
+            if btn_update is not None:
             # Check if the checkbox is checked
                 user.is_subscribed = request.POST.get('is-subscribed') == 'on'
                 user.is_admin = request.POST.get('is-admin') == 'on'
